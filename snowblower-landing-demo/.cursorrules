@@ -1,0 +1,26 @@
+Global Design System & UI Rules:
+* Framework: Use Tailwind CSS exclusively. Write clean, semantic HTML5.
+* Spacing: Strictly enforce an 8-point grid (p-4, p-8, mb-12, gap-6).
+* Color Palette: Backgrounds must be bg-gray-50. Surface cards must be bg-white. Primary text is text-gray-900; secondary text is text-gray-500. Never use pure black.
+* Action Colors: Primary CTAs must be bg-blue-600 with text-white. Success states and checkmarks must use text-emerald-500.
+* UI Physics: Clickable cards use transition-all duration-200 hover:-translate-y-1 hover:shadow-lg. Buttons use active:scale-95 transition-transform duration-100.
+* Trust Logos: General view uses a responsive flex row of logos styled with grayscale opacity-60.
+* Responsive Layout: Mobile-first. Elements stack on mobile (grid-cols-1) and align side-by-side on desktop (md:grid-cols-2 or md:grid-cols-3).
+* Placeholders: Leave a <!-- FORM MOUNT POINT --> comment for the future booking modal.
+
+Booking Modal Rules:
+* Problem step density: On the "What's going on?" step (#problem-options), option cards MUST render two-across with `grid grid-cols-2 gap-3`. Never stack those options in a single column (`space-y-3`). The Next button must stay on screen without scrolling past a long list.
+* Keep tap targets at min-h-[56px]. Let labels wrap with text-sm leading-tight.
+* Single-choice steps with 4 or fewer options (Does it run) may stay stacked.
+* Equipment step may stay stacked because the labels are longer.
+* After edits: commit and push to main so Vercel deploys. Confirm with DONE.
+
+Asset Workflow & Image Rules:
+* Asset Pipeline: Figma (16:9 layout framing) -> Squoosh (.webp optimization) -> HTML root directory.
+* Visual Media: Use explicit Tailwind aspect ratio classes (`aspect-video`, `object-cover`) rather than fixed container heights for visual images.
+* Storage: Keep all local image assets stored directly in the project root directory.
+
+AI Interaction & Output Guidelines:
+* Target OS: Windows (transitioning to macOS without losing project continuity).
+* Instructions: Provide step-by-step modification instructions with explicit line references or exact copy-paste code replacement blocks.
+* Scope: Avoid modifying surrounding code sections unless explicitly requested.
