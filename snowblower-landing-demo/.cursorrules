@@ -5,6 +5,7 @@ Global Design System & UI Rules:
 * Action Colors: Primary CTAs must be bg-blue-600 with text-white. Success states and checkmarks must use text-emerald-500.
 * UI Physics: Clickable cards use transition-all duration-200 hover:-translate-y-1 hover:shadow-lg. Buttons use active:scale-95 transition-transform duration-100.
 * Trust Logos: General view uses a responsive flex row of logos styled with grayscale opacity-60.
+* Hero review row MUST contain exactly 5 yellow star SVGs. Never collapse repeated icons to one.
 * Responsive Layout: Mobile-first. Elements stack on mobile (grid-cols-1) and align side-by-side on desktop (md:grid-cols-2 or md:grid-cols-3).
 * Placeholders: Leave a <!-- FORM MOUNT POINT --> comment for the future booking modal.
 
@@ -24,3 +25,9 @@ AI Interaction & Output Guidelines:
 * Target OS: Windows (transitioning to macOS without losing project continuity).
 * Instructions: Provide step-by-step modification instructions with explicit line references or exact copy-paste code replacement blocks.
 * Scope: Avoid modifying surrounding code sections unless explicitly requested.
+
+Safety / Anti-Wipe Rules:
+* Never overwrite index.html with a stub, placeholder, comment-only file, or anything under 10KB.
+* Never delete index.html.
+* After any restore or large edit, verify before commit: 5 stars, $139.00, booking-modal, How It Works, hero-truck.webp, <!-- FORM MOUNT POINT -->.
+* Read EDIT-PRACTICES.md in this folder before rewriting sections of index.html.
