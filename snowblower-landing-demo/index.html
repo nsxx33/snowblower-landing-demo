@@ -12,6 +12,8 @@
       100% { transform: scale(1); opacity: 1; }
     }
     .option-check-pop { animation: check-pop 200ms ease-out forwards; }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
   </style>
 </head>
 <body class="bg-gray-50 font-sans text-gray-900">
@@ -19,7 +21,7 @@
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <div>
         <span class="inline-block bg-blue-100 text-blue-800 text-sm font-bold px-4 py-1 rounded-full mb-6">Winter Prep: Currently booking pickups for the week of Sept 14</span>
-        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-4">Professional Snowblower Repair Picked Up &amp; Delivered.</h1>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-4">Professional Snowblower Repair Picked Up & Delivered.</h1>
         <p class="text-lg text-gray-500 mb-8 max-w-md">Serving the Minneapolis metro. We haul it, fix it, and return it ready for the next blizzard so you never touch a ramp.</p>
         <!-- FORM MOUNT POINT -->
         <button type="button" id="open-form" class="bg-blue-600 text-white text-lg font-bold py-4 px-8 rounded-xl shadow-md hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-200 w-full sm:w-auto">Schedule My Pickup</button>
@@ -45,40 +47,56 @@
       </div>
     </div>
   </section>
-  <section class="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto">
+
+  <section class="py-16 md:py-24 px-6 sm:px-8 lg:px-12">
+    <div class="max-w-5xl mx-auto">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Choose Your Service</h2>
         <p class="text-lg text-gray-500 max-w-2xl mx-auto">Transparent pricing. No hidden fees. We bring the shop to you, or haul it back to ours.</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
-          <h3 class="text-2xl font-bold text-gray-900">At-Home Tune-Up</h3>
-          <p class="text-gray-500 mt-1 mb-6">Maintained right in your driveway.</p>
-          <div class="mb-6"><span class="text-5xl font-extrabold tracking-tight text-gray-900">$139.00</span></div>
-          <ul class="space-y-4 mb-8 flex-1">
-            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700">Driveway service</span></li>
-            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700">Running machines only</span></li>
-            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700">Multi-point maintenance</span></li>
-            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 font-medium">No hidden fees</span></li>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-3xl border border-gray-200 shadow-sm p-6 flex flex-col">
+          <div class="flex items-center gap-3 pb-4 border-b border-gray-200">
+            <div class="h-10 w-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900">At-Home Tune-Up</h3>
+          </div>
+          <p class="text-base text-gray-500 mt-4">Maintained right in your driveway.</p>
+          <p class="text-sm text-gray-500 mt-4">Per visit</p>
+          <div class="mb-5"><span class="text-5xl font-extrabold tracking-tight text-gray-900">$139.00</span></div>
+          <ul class="space-y-3 mb-4 flex-1">
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">Driveway service</span></li>
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">Running machines only</span></li>
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">Multi-point maintenance</span></li>
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">No hidden fees</span></li>
           </ul>
+          <p class="text-sm text-gray-500 mb-6">At-home tune-ups cover running machines left in an accessible driveway. If we find a bigger issue on site, the visit fee applies toward a full shop repair.</p>
           <button type="button" class="open-form w-full bg-blue-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-blue-700 active:scale-95 transition-all duration-100 mt-auto">Book At-Home Tune-Up</button>
         </div>
-        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
-          <h3 class="text-2xl font-bold text-gray-900">Shop Repair</h3>
-          <p class="text-gray-500 mt-1 mb-6">Complete diagnostic at our facility.</p>
-          <div class="mb-6"><span class="text-3xl font-extrabold tracking-tight text-gray-900">Quoted after inspection</span><p class="text-sm text-gray-500 mt-2 font-medium">Pickup starting at $69.95</p></div>
-          <ul class="space-y-4 mb-8 flex-1">
-            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700">Heavy diagnostics</span></li>
-            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700">Non-starting machines</span></li>
-            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700">Hauling included</span></li>
-            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 font-medium">Written estimates</span></li>
+        <div class="bg-white rounded-3xl border border-gray-200 shadow-sm p-6 flex flex-col">
+          <div class="flex items-center gap-3 pb-4 border-b border-gray-200">
+            <div class="h-10 w-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900">Shop Repair</h3>
+          </div>
+          <p class="text-base text-gray-500 mt-4">Complete diagnostic at our facility.</p>
+          <p class="text-sm text-gray-500 mt-4">Pickup starting at $69.95</p>
+          <div class="mb-5"><span class="text-3xl font-extrabold tracking-tight text-gray-900">Quoted after inspection</span></div>
+          <ul class="space-y-3 mb-4 flex-1">
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">Heavy diagnostics</span></li>
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">Non-starting machines</span></li>
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">Hauling included</span></li>
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">Written estimates</span></li>
           </ul>
+          <p class="text-sm text-gray-500 mb-6">Shop repair benefits cover pickup, inspection, and a written estimate before any work starts. Parts and labor are quoted after we see the machine.</p>
           <button type="button" class="open-form w-full bg-blue-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-blue-700 active:scale-95 transition-all duration-100 mt-auto">Book Shop Repair</button>
         </div>
       </div>
     </div>
   </section>
+
   <section class="py-16 bg-white px-4 sm:px-6 lg:px-8 border-t border-gray-200">
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-16">
@@ -104,27 +122,36 @@
       </div>
     </div>
   </section>
-  <section class="py-16 bg-gray-50 px-4 sm:px-6 lg:px-8">
+
+  <section class="py-16 bg-gray-50 px-6 sm:px-8 lg:px-12">
     <div class="max-w-3xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Frequently Asked Questions</h2>
-      </div>
-      <div class="space-y-4">
-        <details class="group bg-white rounded-xl border border-gray-200 shadow-sm">
-          <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-gray-900"><span>Do I need to be home for the pickup?</span><span class="transition group-open:rotate-180 text-blue-600"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary>
-          <p class="text-gray-500 px-6 pb-6 mt-2">Nope! As long as the snowblower is left outside in an accessible location (like your driveway or beside the garage), we can load it up and leave a confirmation text.</p>
+      <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-left">Your questions, answered.</h2>
+      <div class="bg-gray-100 rounded-3xl px-5">
+        <details class="group border-b border-gray-200">
+          <summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900">
+            <span>Do I need to be home for the pickup?</span>
+            <span class="transition group-open:rotate-180 text-gray-900 shrink-0 ml-4"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M6 9l6 6 6-6"></path></svg></span>
+          </summary>
+          <p class="text-base text-gray-500 pb-5 pr-8">Nope! As long as the snowblower is left outside in an accessible location (like your driveway or beside the garage), we can load it up and leave a confirmation text.</p>
         </details>
-        <details class="group bg-white rounded-xl border border-gray-200 shadow-sm">
-          <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-gray-900"><span>How long does a shop repair take?</span><span class="transition group-open:rotate-180 text-blue-600"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary>
-          <p class="text-gray-500 px-6 pb-6 mt-2">Most shop repairs are completed within 3 to 5 business days, depending on parts availability. We will always communicate the timeline when we provide your written estimate.</p>
+        <details class="group border-b border-gray-200">
+          <summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900">
+            <span>How long does a shop repair take?</span>
+            <span class="transition group-open:rotate-180 text-gray-900 shrink-0 ml-4"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M6 9l6 6 6-6"></path></svg></span>
+          </summary>
+          <p class="text-base text-gray-500 pb-5 pr-8">Most shop repairs are completed within 3 to 5 business days, depending on parts availability. We will always communicate the timeline when we provide your written estimate.</p>
         </details>
-        <details class="group bg-white rounded-xl border border-gray-200 shadow-sm">
-          <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-gray-900"><span>What if my machine needs more than a tune-up?</span><span class="transition group-open:rotate-180 text-blue-600"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary>
-          <p class="text-gray-500 px-6 pb-6 mt-2">If our technician arrives for an At-Home Tune-Up and discovers a major issue, we will simply apply the tune-up fee toward a full Shop Repair and haul it back with us.</p>
+        <details class="group">
+          <summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900">
+            <span>What if my machine needs more than a tune-up?</span>
+            <span class="transition group-open:rotate-180 text-gray-900 shrink-0 ml-4"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M6 9l6 6 6-6"></path></svg></span>
+          </summary>
+          <p class="text-base text-gray-500 pb-5 pr-8">If our technician arrives for an At-Home Tune-Up and discovers a major issue, we will simply apply the tune-up fee toward a full Shop Repair and haul it back with us.</p>
         </details>
       </div>
     </div>
   </section>
+
   <div id="booking-modal" class="hidden fixed inset-0 z-50 bg-gray-900/60 items-end md:items-center justify-center">
     <div class="w-full max-w-lg bg-white shadow-xl max-h-[90vh] overflow-y-auto rounded-t-2xl md:rounded-2xl">
       <div class="sticky top-0 z-10 bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between">
@@ -135,25 +162,16 @@
       <div class="p-6">
         <div id="step-runs" class="booking-step"><h2 class="text-2xl font-extrabold text-gray-900 mb-2">Does it run?</h2><p class="text-gray-500 mb-6">This helps us send the right service.</p><div class="space-y-3" id="runs-options"></div></div>
         <div id="step-equipment" class="booking-step hidden"><h2 class="text-2xl font-extrabold text-gray-900 mb-2">What equipment?</h2><p class="text-gray-500 mb-6">Select all that apply.</p><div class="space-y-3" id="equipment-options"></div><input id="other-unit" type="text" placeholder="Describe the other unit" class="hidden mt-4 w-full min-h-[56px] rounded-xl border border-gray-300 px-4 text-gray-900 focus:ring-2 focus:ring-blue-600"><button type="button" data-next class="mt-6 w-full min-h-[56px] bg-blue-600 text-white font-bold rounded-xl active:scale-95 transition-transform">Next</button></div>
-        <div id="step-problem" class="booking-step hidden"><h2 class="text-2xl font-extrabold text-gray-900 mb-2">What's going on?</h2><p class="text-gray-500 mb-4">Select all that apply.</p><div class="grid grid-cols-2 gap-3" id="problem-options"></div><textarea id="problem-notes" rows="2" placeholder="Anything else we should know?" class="mt-4 w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-600"></textarea><button type="button" data-next class="mt-4 w-full min-h-[56px] bg-blue-600 text-white font-bold rounded-xl active:scale-95 transition-transform sticky bottom-0 z-10">Next</button></div>
-        <div id="step-contact" class="booking-step hidden"><h2 class="text-2xl font-extrabold text-gray-900 mb-2">Contact &amp; address</h2><p class="text-gray-500 mb-6">We'll text you to confirm the window.</p><div class="space-y-4"><input id="contact-name" type="text" placeholder="Full name" class="w-full min-h-[56px] rounded-xl border border-gray-300 px-4 text-gray-900 focus:ring-2 focus:ring-blue-600"><input id="contact-phone" type="tel" placeholder="Phone" class="w-full min-h-[56px] rounded-xl border border-gray-300 px-4 text-gray-900 focus:ring-2 focus:ring-blue-600"><input id="contact-email" type="email" placeholder="Email" class="w-full min-h-[56px] rounded-xl border border-gray-300 px-4 text-gray-900 focus:ring-2 focus:ring-blue-600"><input id="contact-address" type="text" placeholder="Street address" class="w-full min-h-[56px] rounded-xl border border-gray-300 px-4 text-gray-900 focus:ring-2 focus:ring-blue-600"><div class="grid grid-cols-2 gap-4"><input id="contact-city" type="text" placeholder="City" class="w-full min-h-[56px] rounded-xl border border-gray-300 px-4 text-gray-900 focus:ring-2 focus:ring-blue-600"><input id="contact-zip" type="text" inputmode="numeric" placeholder="ZIP" class="w-full min-h-[56px] rounded-xl border border-gray-300 px-4 text-gray-900 focus:ring-2 focus:ring-blue-600"></div></div><button type="button" id="btn-calculate-price" class="mt-6 w-full min-h-[56px] bg-blue-600 text-white font-bold rounded-xl active:scale-95 transition-transform inline-flex items-center justify-center gap-2"><svg id="price-spinner" class="hidden animate-spin h-5 w-5 text-white" viewBox="0 0 24 24" fill="none"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg><span id="price-btn-label">Next</span></button></div>
-        <div id="step-review" class="booking-step hidden"><h2 class="text-2xl font-extrabold text-gray-900 mb-6">Review &amp; schedule</h2><div id="review-address" class="bg-white border border-gray-200 rounded-2xl p-4 mb-4"></div><div id="review-charge" class="bg-white border border-gray-200 rounded-2xl p-4 mb-4"></div><div id="out-of-bounds-alert" class="hidden mb-4 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-gray-900">That ZIP is outside our current pickup area. Call the shop and we'll see if we can still help.</div><button type="button" id="btn-submit-booking" class="w-full min-h-[56px] bg-blue-600 text-white font-bold rounded-xl active:scale-95 transition-transform">Submit booking</button></div>
+        <div id="step-problem" class="booking-step hidden"><h2 class="text-2xl font-extrabold text-gray-900 mb-2">What's going on?</h2><p class="text-gray-500 mb-4">Select all that apply.</p><div class="grid grid-cols-2 gap-3" id="problem-options"></div><textarea id="problem-notes" rows="2" placeholder="Anything else we should know?" class="mt-4 w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-600"></textarea><button type="button" data-next class="mt-4 w-full min-h-[56px] bg-blue-600 text-white font-bold rounded-xl active:scale-95 transition-transform">Next</button></div>
+        <div id="step-contact" class="booking-step hidden"><h2 class="text-2xl font-extrabold text-gray-900 mb-2">Contact & address</h2><p class="text-gray-500 mb-6">We'll text you to confirm the window.</p><div class="space-y-4"><input id="contact-name" type="text" placeholder="Full name" class="w-full min-h-[56px] rounded-xl border border-gray-300 px-4 text-gray-900 focus:ring-2 focus:ring-blue-600"><input id="contact-phone" type="tel" placeholder="Phone" class="w-full min-h-[56px] rounded-xl border border-gray-300 px-4 text-gray-900 focus:ring-2 focus:ring-blue-600"><input id="contact-email" type="email" placeholder="Email" class="w-full min-h-[56px] rounded-xl border border-gray-300 px-4 text-gray-900 focus:ring-2 focus:ring-blue-600"><input id="contact-address" type="text" placeholder="Street address" class="w-full min-h-[56px] rounded-xl border border-gray-300 px-4 text-gray-900 focus:ring-2 focus:ring-blue-600"><div class="grid grid-cols-2 gap-4"><input id="contact-city" type="text" placeholder="City" class="w-full min-h-[56px] rounded-xl border border-gray-300 px-4 text-gray-900 focus:ring-2 focus:ring-blue-600"><input id="contact-zip" type="text" inputmode="numeric" placeholder="ZIP" class="w-full min-h-[56px] rounded-xl border border-gray-300 px-4 text-gray-900 focus:ring-2 focus:ring-blue-600"></div></div><button type="button" id="btn-calculate-price" class="mt-6 w-full min-h-[56px] bg-blue-600 text-white font-bold rounded-xl active:scale-95 transition-transform inline-flex items-center justify-center gap-2"><svg id="price-spinner" class="hidden animate-spin h-5 w-5 text-white" viewBox="0 0 24 24" fill="none"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg><span id="price-btn-label">Next</span></button></div>
+        <div id="step-review" class="booking-step hidden"><h2 class="text-2xl font-extrabold text-gray-900 mb-6">Review & schedule</h2><div id="review-address" class="bg-white border border-gray-200 rounded-2xl p-4 mb-4"></div><div id="review-charge" class="bg-white border border-gray-200 rounded-2xl p-4 mb-4"></div><div id="out-of-bounds-alert" class="hidden mb-4 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-gray-900">That ZIP is outside our current pickup area. Call the shop and we'll see if we can still help.</div><button type="button" id="btn-submit-booking" class="w-full min-h-[56px] bg-blue-600 text-white font-bold rounded-xl active:scale-95 transition-transform">Submit booking</button></div>
         <div id="step-success" class="booking-step hidden text-center py-8"><div class="mx-auto mb-6 h-16 w-16 rounded-full bg-emerald-100 text-emerald-500 flex items-center justify-center text-3xl">✓</div><h2 class="text-2xl font-extrabold text-gray-900 mb-2">You're on the list</h2><p class="text-gray-500">We'll text you to confirm pickup. You can close this window.</p></div>
       </div>
     </div>
   </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const brand = urlParams.get("brand");
-      if (brand) {
-        const logoContainer = document.querySelector(".flex.flex-wrap.items-center.gap-6.mt-12");
-        if (logoContainer) {
-          const brandName = brand.toUpperCase();
-          logoContainer.className = "mt-12";
-          logoContainer.innerHTML = `<div class="inline-flex items-center bg-white px-6 py-3 rounded-xl shadow-md border border-gray-200"><span class="text-2xl font-black text-blue-600 tracking-wider">${brandName}</span><span class="text-sm font-bold text-gray-500 ml-3 uppercase tracking-wide border-l border-gray-300 pl-3">Specialist</span></div>`;
-        }
-      }
       let formData = { serviceType: null, equipment: [], problemType: [], runs: null, zipCode: null, name: "", phone: "", email: "", address: "", city: "", notes: "", otherUnit: "", price: null };
       const STEPS = ["step-runs", "step-equipment", "step-problem", "step-contact", "step-review", "step-success"];
       let currentStep = 0;
@@ -161,10 +179,10 @@
       const modal = document.getElementById("booking-modal");
       const backBtn = document.getElementById("btn-back");
       const stepLabel = document.getElementById("modal-step-label");
-      const CARD_BASE = "option-card w-full min-h-[56px] text-left px-4 py-3 rounded-xl border flex items-center justify-between gap-3 transition-all duration-200 ease-out active:scale-[0.98] hover:border-blue-300 hover:shadow-sm";
+      const CARD_BASE = "option-card w-full min-h-[56px] text-left px-3 py-3 rounded-xl border flex items-center justify-between gap-2 transition-all duration-200 ease-out active:scale-[0.98] hover:border-blue-300 hover:shadow-sm";
       const CARD_IDLE = ["border-gray-200", "bg-white", "text-gray-900"];
       const CARD_SELECTED = ["bg-blue-50", "border-blue-600", "ring-1", "ring-blue-600", "text-blue-900"];
-      const CHECK_SVG = '<svg class="option-check w-5 h-5 text-blue-600 shrink-0 scale-0 opacity-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>';
+      const CHECK_SVG = '<svg class="option-check w-4 h-4 text-blue-600 shrink-0 scale-0 opacity-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>';
       const RUNS = ["No, it doesn't start", "Yes, it runs great", "Yes, it runs, but rough", "Not sure"];
       const EQUIPMENT = ["Snowblower — Large 2 Stage", "Snowblower — Small single stage", "Push lawn mower", "Riding lawn mower", "Other unit"];
       const PROBLEMS = ["Tune-up request", "Does not start", "Broken parts", "Runs rough", "Leaks gas", "Flat tire(s)", "Does not blow snow", "Broken belt", "Won't drive", "Cable broken", "Shear bolts"];
@@ -179,12 +197,13 @@
       }
       function renderOptions(containerId, items, selected, multi) {
         const el = document.getElementById(containerId);
+        const dense = containerId === "problem-options";
+        const cardBase = dense ? CARD_BASE + " text-sm items-start" : CARD_BASE;
         el.innerHTML = items.map((item) => {
           const isOn = multi ? selected.includes(item) : selected === item;
           const state = isOn ? CARD_SELECTED.join(" ") : CARD_IDLE.join(" ");
-          const check = isOn ? CHECK_SVG.replace("scale-0 opacity-0", "option-check-pop") : CHECK_SVG;
-          const compact = containerId === "problem-options" ? " text-sm leading-tight px-3" : "";
-          return `<button type="button" data-value="${item.replace(/"/g, "&quot;")}" class="${CARD_BASE} ${state}${compact}"><span>${item}</span>${check}</button>`;
+          const check = isOn ? CHECK_SVG.replace('scale-0 opacity-0', 'option-check-pop') : CHECK_SVG;
+          return `<button type="button" data-value="${item.replace(/"/g, '"')}" class="${cardBase} ${state}"><span>${item}</span>${check}</button>`;
         }).join("");
         el.querySelectorAll("button").forEach((btn) => {
           btn.addEventListener("click", () => {
@@ -228,8 +247,7 @@
         await new Promise((r) => setTimeout(r, 700));
         const zip = String(zipCode || "").replace(/\D/g, "");
         if (!/^55\d{3}$/.test(zip)) { const err = new Error("OUT_OF_RANGE"); err.code = "OUT_OF_RANGE"; throw err; }
-        const atHome = formData.serviceType === "at-home" || formData.runs === "Yes, it runs great";
-        return { price: atHome ? 139 : 69.95 };
+        return { price: (formData.serviceType === "at-home" || formData.runs === "Yes, it runs great") ? 139 : 69.95 };
       }
       function collectContact() {
         formData.name = document.getElementById("contact-name").value.trim();
