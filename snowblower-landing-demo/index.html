@@ -15,37 +15,15 @@
           Winter Prep: Currently booking pickups for the week of Sept 14
         </span>
         <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-4">
-          Professional Snowblower Repair Picked Up &amp; Delivered.
+          Professional Snowblower Repair Picked Up & Delivered.
         </h1>
         <p class="text-lg text-gray-500 mb-8 max-w-md">
           Serving the Minneapolis metro. We haul it, fix it, and return it ready for the next blizzard so you never touch a ramp.
         </p>
         <!-- FORM MOUNT POINT -->
-        <form id="pickup-form" method="POST" action="https://shop-command-phi.vercel.app/api/leads/intake" class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 w-full max-w-md">
-          <input type="hidden" name="success_url" value="https://snowblower-landing.vercel.app/?booked=1">
-          <div class="mb-4">
-            <label for="name" class="block text-sm font-medium text-gray-900 mb-2">Name</label>
-            <input id="name" name="name" type="text" required autocomplete="name" class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900">
-          </div>
-          <div class="mb-4">
-            <label for="phone" class="block text-sm font-medium text-gray-900 mb-2">Phone</label>
-            <input id="phone" name="phone" type="tel" required autocomplete="tel" class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900">
-          </div>
-          <div class="mb-4">
-            <label for="email" class="block text-sm font-medium text-gray-900 mb-2">Email</label>
-            <input id="email" name="email" type="email" required autocomplete="email" class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900">
-          </div>
-          <div class="mb-6">
-            <label for="problem" class="block text-sm font-medium text-gray-900 mb-2">Service</label>
-            <select id="problem" name="problem" required class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900">
-              <option value="At-Home Tune-Up">At-Home Tune-Up ($139)</option>
-              <option value="Shop Repair">Shop Repair (pickup from $69.95)</option>
-            </select>
-          </div>
-          <button type="submit" class="w-full bg-blue-600 text-white text-lg font-bold py-4 px-6 rounded-xl hover:bg-blue-700 hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-100">
-            Schedule My Pickup
-          </button>
-        </form>
+        <button type="button" id="open-form" class="bg-blue-600 text-white text-lg font-bold py-4 px-8 rounded-xl shadow-md hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-200 w-full sm:w-auto">
+          Schedule My Pickup
+        </button>
         <p id="booked-note" class="hidden mt-4 text-sm font-medium text-emerald-600">Request received. We will text you to confirm pickup.</p>
         <div class="flex items-center gap-2 mt-4">
           <div class="flex text-yellow-400">
@@ -87,7 +65,7 @@
             <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700">Multi-point maintenance</span></li>
             <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 font-medium">No hidden fees</span></li>
           </ul>
-          <a href="https://shop-command-phi.vercel.app/book" class="w-full bg-blue-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-blue-700 active:scale-95 transition-all duration-100 mt-auto text-center">Book At-Home Tune-Up</a>
+          <button type="button" class="open-form w-full bg-blue-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-blue-700 active:scale-95 transition-all duration-100 mt-auto text-center">Book At-Home Tune-Up</button>
         </div>
         <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
           <h3 class="text-2xl font-bold text-gray-900">Shop Repair</h3>
@@ -102,7 +80,7 @@
             <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700">Hauling included</span></li>
             <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 font-medium">Written estimates</span></li>
           </ul>
-          <a href="https://shop-command-phi.vercel.app/book" class="w-full bg-blue-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-blue-700 active:scale-95 transition-all duration-100 mt-auto text-center">Book Shop Repair</a>
+          <button type="button" class="open-form w-full bg-blue-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-blue-700 active:scale-95 transition-all duration-100 mt-auto text-center">Book Shop Repair</button>
         </div>
       </div>
     </div>
@@ -155,8 +133,53 @@
       </div>
     </div>
   </section>
+
+  <div id="form-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50">
+    <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 w-full max-w-md relative">
+      <button type="button" id="close-form" class="absolute top-4 right-4 text-gray-500 text-2xl leading-none">&times;</button>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Schedule My Pickup</h2>
+      <form id="pickup-form" method="POST" action="https://shop-command-phi.vercel.app/api/leads/intake">
+        <input type="hidden" name="success_url" value="https://snowblower-landing.vercel.app/?booked=1">
+        <div class="mb-4">
+          <label for="name" class="block text-sm font-medium text-gray-900 mb-2">Name</label>
+          <input id="name" name="name" type="text" required autocomplete="name" class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900">
+        </div>
+        <div class="mb-4">
+          <label for="phone" class="block text-sm font-medium text-gray-900 mb-2">Phone</label>
+          <input id="phone" name="phone" type="tel" required autocomplete="tel" class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900">
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-900 mb-2">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900">
+        </div>
+        <div class="mb-6">
+          <label for="problem" class="block text-sm font-medium text-gray-900 mb-2">Service</label>
+          <select id="problem" name="problem" required class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900">
+            <option value="At-Home Tune-Up">At-Home Tune-Up ($139)</option>
+            <option value="Shop Repair">Shop Repair (pickup from $69.95)</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white text-lg font-bold py-4 px-6 rounded-xl hover:bg-blue-700 active:scale-95 transition-all duration-100">
+          Schedule My Pickup
+        </button>
+      </form>
+    </div>
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      const modal = document.getElementById("form-modal");
+      const openers = document.querySelectorAll("#open-form, .open-form");
+      const closer = document.getElementById("close-form");
+      const openModal = () => modal && modal.classList.remove("hidden");
+      const closeModal = () => modal && modal.classList.add("hidden");
+      openers.forEach((btn) => btn.addEventListener("click", openModal));
+      if (closer) closer.addEventListener("click", closeModal);
+      if (modal) {
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) closeModal();
+        });
+      }
       if (new URLSearchParams(window.location.search).get("booked") === "1") {
         const note = document.getElementById("booked-note");
         if (note) note.classList.remove("hidden");
