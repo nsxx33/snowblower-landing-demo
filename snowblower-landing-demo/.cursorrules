@@ -5,9 +5,8 @@ Global Design System & UI Rules:
 * Action Colors: Primary CTAs must be bg-blue-600 with text-white. Success states and checkmarks must use text-emerald-500.
 * UI Physics: Clickable cards use transition-all duration-200 hover:-translate-y-1 hover:shadow-lg. Buttons use active:scale-95 transition-transform duration-100.
 * Trust Logos: General view uses a responsive flex row of logos styled with grayscale opacity-60.
-* Hero review row MUST contain exactly 5 yellow star SVGs. Never collapse repeated icons to one.
+* Hero review row is the Angi badge (4.6, 413 Verified Reviews, Super Service Award 2023). Do not revert it to five generic stars unless asked.
 * Responsive Layout: Mobile-first. Elements stack on mobile (grid-cols-1) and align side-by-side on desktop (md:grid-cols-2 or md:grid-cols-3).
-* Placeholders: Leave a <!-- FORM MOUNT POINT --> comment for the future booking modal.
 
 Booking Modal Rules:
 * Problem step density: On the "What's going on?" step (#problem-options), option cards MUST render two-across with `grid grid-cols-2 gap-3`. Never stack those options in a single column (`space-y-3`). The Next button must stay on screen without scrolling past a long list.
@@ -27,7 +26,11 @@ AI Interaction & Output Guidelines:
 * Scope: Avoid modifying surrounding code sections unless explicitly requested.
 
 Safety / Anti-Wipe Rules:
-* Never overwrite index.html with a stub, placeholder, comment-only file, or anything under 10KB.
+* GitHub create_or_update_file and push_files REPLACE THE ENTIRE FILE. Never upload a hero-only or otherwise partial index.html. That is how commit ccc0989 cut the live page off below the truck photo (26142 → 5929 bytes).
+* Never overwrite index.html with a stub, placeholder, comment-only file, hero-only file, or anything under 20KB.
 * Never delete index.html.
-* After any restore or large edit, verify before commit: 5 stars, $139.00, booking-modal, How It Works, hero-truck.webp, <!-- FORM MOUNT POINT -->.
+* After any restore or large edit, verify before commit AND after push: file ≥20KB, 4 sections, Choose Your Service, How It Works, Your questions answered, booking-modal, $139.00, $69.95, hero-truck.webp, 413 Verified Reviews.
+* The last 80 characters of index.html MUST include </script> then </body> then </html>. If the file ends after the first hero </section>, it is a wipe — abort and restore from ab79d94 or 9a23f9c.
+* If the pushed blob is under 20KB, restore immediately. Do not ship.
+* One writer at a time.
 * Read EDIT-PRACTICES.md in this folder before rewriting sections of index.html.
