@@ -1,3 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 255" role="img" aria-label="4.6 stars, 413 verified Angi reviews, Super Service Award 2023">
-  <image href="data:image/webp;base64,PLACEHOLDER" width="480" height="255"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 255" role="img" aria-label="4.6 stars from 413 Verified Reviews. Super Service Award 2023">
+  <rect width="480" height="255" fill="#ffffff"/>
+  <g fill="#F5C518">
+    <path d="M36 22l8.5 17.2 19 2.8-13.8 13.4 3.3 18.9L36 65.4 19 74.3l3.3-18.9L8.5 42l19-2.8z"/>
+    <path d="M100 22l8.5 17.2 19 2.8-13.8 13.4 3.3 18.9L100 65.4 83 74.3l3.3-18.9L72.5 42l19-2.8z"/>
+    <path d="M164 22l8.5 17.2 19 2.8-13.8 13.4 3.3 18.9L164 65.4 147 74.3l3.3-18.9L136.5 42l19-2.8z"/>
+    <path d="M228 22l8.5 17.2 19 2.8-13.8 13.4 3.3 18.9L228 65.4 211 74.3l3.3-18.9L200.5 42l19-2.8z"/>
+  </g>
+  <defs>
+    <clipPath id="half"><rect x="276" y="18" width="18" height="60"/></clipPath>
+  </defs>
+  <path fill="#D1D5DB" d="M292 22l8.5 17.2 19 2.8-13.8 13.4 3.3 18.9L292 65.4 275 74.3l3.3-18.9L264.5 42l19-2.8z"/>
+  <path fill="#F5C518" clip-path="url(#half)" d="M292 22l8.5 17.2 19 2.8-13.8 13.4 3.3 18.9L292 65.4 275 74.3l3.3-18.9L264.5 42l19-2.8z"/>
+  <text x="360" y="68" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" fill="#111827">4.6</text>
+  <text x="8" y="140" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#111827">413 Verified Reviews</text>
+  <g transform="translate(8,168)">
+    <path fill="#E24B3B" d="M8 24 L32 4 L56 24 V70 H8 Z"/>
+    <path fill="#C53A2D" d="M4 24 L32 1 L60 24 L55 24 L32 6 L9 24 Z"/>
+    <text x="32" y="38" text-anchor="middle" fill="white" font-size="12" font-weight="700" font-family="Georgia, serif">Angi</text>
+    <rect x="8" y="44" width="48" height="11" rx="1" fill="#B83228"/>
+    <text x="32" y="53" text-anchor="middle" fill="white" font-size="5.2" font-weight="700" font-family="Arial, sans-serif" letter-spacing="0.3">SUPER SERVICE AWARD</text>
+    <text x="32" y="66" text-anchor="middle" fill="white" font-size="9" font-weight="700" font-family="Arial, sans-serif">2023</text>
+  </g>
+  <text x="88" y="206" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#111827">Super Service</text>
+  <text x="88" y="238" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#111827">Award 2023</text>
 </svg>
