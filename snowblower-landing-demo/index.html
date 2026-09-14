@@ -69,13 +69,16 @@
   </header>
 
   <main class="pb-0 md:pb-0">
-  <section class="py-10 px-4 sm:px-6 md:py-32 md:px-12 lg:px-16">
+  <section id="hero" class="block w-full py-10 px-4 sm:px-6 md:py-32 md:px-12 lg:px-16">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
       <div>
         <span class="inline-block bg-blue-100 text-blue-800 text-sm font-bold px-4 py-1 rounded-full mb-4 md:mb-8">Winter Prep: Currently booking pickups for the week of Sept 14</span>
         <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-4 md:mb-8">Professional Snowblower Repair <span class="text-blue-600">Picked Up &amp; Delivered.</span></h1>
         <p class="text-lg text-gray-500 mb-5 md:mb-10 max-w-md">Serving the Minneapolis metro. We haul it, fix it, and return it ready for the next blizzard so you never touch a ramp.</p>
-        <button type="button" id="open-form" class="bg-blue-600 text-white text-lg font-semibold py-4 px-8 rounded-xl shadow-lg shadow-blue-600/30 hover:-translate-y-1 active:scale-[0.98] transition-all duration-200 ease-out w-full sm:w-auto mb-2 md:mb-8">Schedule My Pickup</button>
+        <div id="hero-cta-wrap" class="mb-2 md:mb-8">
+          <button type="button" id="compare-pricing" class="md:hidden bg-transparent border-2 border-blue-600 text-blue-600 font-semibold px-6 py-2.5 rounded-full text-sm">Compare Pricing</button>
+          <button type="button" id="open-form" class="hidden md:inline-flex bg-blue-600 text-white text-lg font-semibold py-4 px-8 rounded-xl shadow-lg shadow-blue-600/30 hover:-translate-y-1 active:scale-[0.98] transition-all duration-200 ease-out">Schedule My Pickup</button>
+        </div>
         <div class="flex flex-col items-center justify-center mt-2 md:mt-6 space-y-1 md:space-y-2">
           <img src="snowblower-review.png" alt="Angi Super Service Award 2023 — 4.6 from 413 verified reviews" class="w-[120px] md:w-[140px] max-w-[140px] object-contain mx-auto mix-blend-multiply" onerror="this.onerror=null;this.src='snowblower-review.svg'" />
         </div>
@@ -95,7 +98,7 @@
   <section class="py-16 md:py-24 px-3 sm:px-8 lg:px-12">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-8 md:mb-12">
-        <h2 id="compare-options" class="text-3xl font-extrabold text-gray-900 mb-4">Compare Your Options</h2>
+        <h2 id="compare-options" class="text-3xl font-extrabold text-gray-900 mb-4 scroll-mt-20">Compare Your Options</h2>
         <p class="text-lg text-gray-500 max-w-2xl mx-auto">Transparent pricing. No hidden fees. We bring the shop to you, or haul it back to ours.</p>
       </div>
       <div id="service-tabs" class="flex w-full max-w-6xl mx-auto mb-8 rounded-2xl bg-gray-100 p-1" role="tablist" aria-label="Service type">
@@ -335,7 +338,11 @@
   </div>
 
 <script>
+if(history.scrollRestoration){history.scrollRestoration="manual";}
+if(location.hash){history.replaceState(null,"",location.pathname+location.search);}
+window.scrollTo(0,0);
 document.addEventListener("DOMContentLoaded",()=>{
+  window.scrollTo(0,0);
   if(/iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase())){
     document.documentElement.classList.add("is-ios");
   }
@@ -368,7 +375,15 @@ document.addEventListener("DOMContentLoaded",()=>{
     modal.classList.add("hidden");
     document.body.classList.remove("overflow-hidden");
   }
-  document.getElementById("open-form").addEventListener("click",()=>openModal(null));
+  const openFormBtn=document.getElementById("open-form");
+  if(openFormBtn){openFormBtn.addEventListener("click",()=>openModal(null));}
+  const comparePricingBtn=document.getElementById("compare-pricing");
+  if(comparePricingBtn){
+    comparePricingBtn.addEventListener("click",()=>{
+      const target=document.getElementById("compare-options");
+      if(target){target.scrollIntoView({behavior:"smooth",block:"start"});}
+    });
+  }
   document.querySelectorAll(".open-form").forEach(b=>b.addEventListener("click",()=>openModal(b.getAttribute("data-service"))));
   document.getElementById("btn-close").addEventListener("click",closeModal);
   document.getElementById("modal-backdrop").addEventListener("click",closeModal);
@@ -435,7 +450,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   setServiceTab("shop");
 
   const footer=document.getElementById("mobile-sticky-footer");
-  const heroBtn=document.getElementById("open-form");
+  const heroCta=document.getElementById("hero-cta-wrap");
   const compareHeadline=document.getElementById("compare-options");
   const footerMessages=document.getElementById("footer-messages");
   let isFooterVisible=false;
@@ -477,13 +492,13 @@ document.addEventListener("DOMContentLoaded",()=>{
     document.querySelector("main").classList.remove("pb-24");
     footerMessages.classList.remove("shine-animation");
   }
-  if(heroBtn&&footer){
+  if(heroCta&&footer){
     const heroObs=new IntersectionObserver(entries=>{
       const entry=entries[0];
       if(!entry.isIntersecting){showFooter();}
       else{hideFooter();}
     },{threshold:0,rootMargin:"0px"});
-    heroObs.observe(heroBtn);
+    heroObs.observe(heroCta);
   }
   if(compareHeadline&&footerMessages){
     const compareObs=new IntersectionObserver(entries=>{
