@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="Apple Messages">
+  <defs>
+    <linearGradient id="msgGreen" x1="64" y1="8" x2="64" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#62F16C"/>
+      <stop offset="1" stop-color="#21C459"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#msgGreen)"/>
+  <path fill="#fff" d="M64 28c22.1 0 40 14.8 40 33.1 0 18.3-17.9 33.1-40 33.1-3.6 0-7.1-.4-10.4-1.1L37 102.2c-.8.5-1.8-.3-1.5-1.2l5.6-16.2C32.3 77.6 24 70 24 61.1 24 42.8 41.9 28 64 28z"/>
+</svg>
