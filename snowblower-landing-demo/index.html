@@ -36,11 +36,11 @@
     .shine-animation .shine-sweep::after {
       content: "";
       position: absolute;
-      top: -10%;
+      top: -20%;
       left: 0;
-      width: 45%;
-      height: 120%;
-      background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.15) 35%, rgba(255,255,255,0.85) 50%, rgba(226,232,240,0.55) 62%, transparent 100%);
+      width: 55%;
+      height: 140%;
+      background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.2) 28%, rgba(255,255,255,0.95) 50%, rgba(226,232,240,0.7) 62%, transparent 100%);
       animation: silver-shine 0.9s ease-out 1;
     }
   </style>
@@ -99,8 +99,8 @@
         <p class="text-lg text-gray-500 max-w-2xl mx-auto">Transparent pricing. No hidden fees. We bring the shop to you, or haul it back to ours.</p>
       </div>
       <div id="service-tabs" class="flex w-full max-w-6xl mx-auto mb-8 rounded-2xl bg-gray-100 p-1" role="tablist" aria-label="Service type">
-        <button type="button" role="tab" aria-selected="true" data-service-tab="shop" class="service-tab flex-1 min-h-[48px] px-3 md:px-6 py-3 rounded-xl text-sm md:text-base font-semibold bg-blue-600 text-white transition-colors duration-200">Shop Repair (Most Popular)</button>
-        <button type="button" role="tab" aria-selected="false" data-service-tab="at-home" class="service-tab flex-1 min-h-[48px] px-3 md:px-6 py-3 rounded-xl text-sm md:text-base font-semibold bg-transparent text-gray-700 transition-colors duration-200">At-Home Repair</button>
+        <button type="button" role="tab" aria-selected="true" data-service-tab="shop" class="service-tab flex-1 min-h-[48px] px-2 md:px-6 py-3 rounded-xl text-[13px] leading-tight md:text-base font-semibold bg-blue-600 text-white transition-colors duration-200">Shop Repair (Most Popular)</button>
+        <button type="button" role="tab" aria-selected="false" data-service-tab="at-home" class="service-tab flex-1 min-h-[48px] px-2 md:px-6 py-3 rounded-xl text-[13px] leading-tight md:text-base font-semibold bg-transparent text-gray-700 transition-colors duration-200">At-Home Repair</button>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         <div data-pricing-card="shop" class="bg-white rounded-3xl border border-gray-200 shadow-sm p-6 md:p-8 flex flex-col ring-2 ring-blue-600 relative overflow-hidden">
@@ -439,6 +439,23 @@ document.addEventListener("DOMContentLoaded",()=>{
   const compareHeadline=document.getElementById("compare-options");
   const footerMessages=document.getElementById("footer-messages");
   let isFooterVisible=false;
+  let shineLockUntil=0;
+  function playShine(){
+    footerMessages.classList.remove("shine-animation");
+    void footerMessages.offsetWidth;
+    footerMessages.classList.add("shine-animation");
+    shineLockUntil=Date.now()+950;
+    setTimeout(()=>{
+      shineLockUntil=0;
+      if(!compareHeadline)return;
+      const r=compareHeadline.getBoundingClientRect();
+      if(r.top<window.innerHeight&&r.bottom>0)stopShine();
+    },960);
+  }
+  function stopShine(){
+    if(Date.now()<shineLockUntil)return;
+    footerMessages.classList.remove("shine-animation");
+  }
   function showFooter(){
     if(isDesktop())return;
     if(isFooterVisible)return;
@@ -446,14 +463,9 @@ document.addEventListener("DOMContentLoaded",()=>{
     footer.classList.remove("opacity-0","pointer-events-none");
     footer.classList.add("opacity-100");
     footer.setAttribute("aria-hidden","false");
-    document.body.classList.add("pb-20");
-    document.querySelector("main").classList.add("pb-20");
-    footerMessages.classList.remove("shine-animation");
-    const compareVisible=compareHeadline&&compareHeadline.getBoundingClientRect().top<window.innerHeight&&compareHeadline.getBoundingClientRect().bottom>0;
-    if(!compareVisible){
-      void footerMessages.offsetWidth;
-      footerMessages.classList.add("shine-animation");
-    }
+    document.body.classList.add("pb-24");
+    document.querySelector("main").classList.add("pb-24");
+    playShine();
   }
   function hideFooter(){
     if(!isFooterVisible)return;
@@ -461,8 +473,8 @@ document.addEventListener("DOMContentLoaded",()=>{
     footer.classList.add("opacity-0","pointer-events-none");
     footer.classList.remove("opacity-100");
     footer.setAttribute("aria-hidden","true");
-    document.body.classList.remove("pb-20");
-    document.querySelector("main").classList.remove("pb-20");
+    document.body.classList.remove("pb-24");
+    document.querySelector("main").classList.remove("pb-24");
     footerMessages.classList.remove("shine-animation");
   }
   if(heroBtn&&footer){
@@ -475,10 +487,8 @@ document.addEventListener("DOMContentLoaded",()=>{
   }
   if(compareHeadline&&footerMessages){
     const compareObs=new IntersectionObserver(entries=>{
-      if(entries[0].isIntersecting){
-        footerMessages.classList.remove("shine-animation");
-      }
-    },{threshold:0.15});
+      if(entries[0].isIntersecting){stopShine();}
+    },{threshold:0.6});
     compareObs.observe(compareHeadline);
   }
   window.addEventListener("resize",()=>{
