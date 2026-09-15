@@ -5,6 +5,393 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Snowblower Repair & Tune-Up</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes check-pop {
+      0% { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .option-check-pop { animation: check-pop 200ms ease-out forwards; }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yi2k8mlr2p");
+</script>
 </head>
-<body>RESTORE_IN_PROGRESS</body>
+<body class="bg-gray-50 font-sans text-gray-900">
+  <header class="py-2 px-4 sticky top-0 z-50 bg-slate-50 border-b border-gray-200">
+    <div class="flex justify-between items-center max-w-5xl mx-auto gap-3">
+      <div class="flex flex-col whitespace-nowrap">
+        <span class="text-blue-900 text-base md:text-lg font-bold italic whitespace-nowrap">Twin City Small Engine®</span>
+        <span class="text-[10px] font-semibold text-blue-900 text-right pr-1 block">Since 1981</span>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="sms:+16127250672" class="h-6 w-6 shrink-0 inline-flex items-center justify-center" aria-label="Message Twin City Small Engine">
+          <img src="apple-messages-glossy.png" alt="Apple Messages" class="h-6 w-6 object-contain flex-shrink-0" />
+        </a>
+        <a href="tel:6127250672" class="text-blue-900 font-bold italic text-sm">Call <span class="underline">612-725-0672</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+  <section id="hero" class="block w-full pt-8 pb-10 px-4 sm:px-6 md:pt-10 md:pb-32 md:px-12 lg:px-16">
+    <div class="max-w-7xl mx-auto flex flex-col md:grid md:grid-cols-2 md:gap-x-16 md:items-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mt-0 mb-2 md:mt-10 md:mb-8 md:col-start-1 md:row-start-1">Professional Snowblower Repair <span class="text-blue-600">Picked Up &amp; Delivered.</span></h1>
+      <p class="text-sm md:text-base text-gray-600 leading-snug mb-6 md:mb-10 max-w-md md:col-start-1 md:row-start-2">Serving the Minneapolis metro. We haul it, fix it, and return it ready for the next blizzard so you never touch a ramp.</p>
+      <img src="hero-truck.webp" alt="Snowblower pickup and delivery truck" class="w-full h-auto max-h-[170px] md:max-h-none object-cover rounded-xl mt-0 mb-6 shadow-sm md:col-start-2 md:row-start-1 md:row-span-5">
+      <div id="hero-cta-wrap" class="flex flex-col items-center mb-4 md:mb-8 w-full md:col-start-1 md:row-start-3">
+        <button type="button" id="open-form" class="bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-lg py-4 px-8 rounded-xl w-full max-w-sm mx-auto block shadow-md">Schedule My Pickup</button>
+      </div>
+      <div class="flex flex-col items-center justify-center text-center mt-0 w-full md:col-start-1 md:row-start-4">
+        <img src="snowblower-review.png" alt="Angi Super Service Award 2023 — 4.6 from 413 verified reviews" class="w-[120px] md:w-[140px] max-w-[140px] object-contain mix-blend-multiply" onerror="this.onerror=null;this.src='snowblower-review.svg'" />
+        <div class="flex justify-center items-center gap-6 mt-4 w-full h-8">
+          <img src="/toro.png" alt="Toro" class="h-full max-h-[16px] md:max-h-[20px] w-auto object-contain grayscale opacity-60 mix-blend-multiply" />
+          <img src="/ariens.png" alt="Ariens" class="h-full max-h-[16px] md:max-h-[20px] w-auto object-contain grayscale opacity-60 mix-blend-multiply" />
+          <img src="/craftsman.png" alt="Craftsman" class="h-full max-h-[16px] md:max-h-[20px] w-auto object-contain grayscale opacity-60 mix-blend-multiply" />
+          <img src="/troy-bilt.png" alt="Troy-Bilt" class="h-full max-h-[16px] md:max-h-[20px] w-auto object-contain grayscale opacity-60 mix-blend-multiply" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="scroll-mt-28 py-16 md:py-24 px-3 sm:px-8 lg:px-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 id="compare-options" class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight text-center mb-4">Compare Your Options</h2>
+        <p class="text-lg text-gray-500 max-w-2xl mx-auto">Transparent pricing. No hidden fees. We bring the shop to you, or haul it back to ours.</p>
+      </div>
+      <div id="service-tabs" class="flex bg-gray-200 p-1.5 rounded-xl max-w-sm mx-auto mb-10 relative" role="tablist" aria-label="Service type">
+        <button type="button" role="tab" id="tab-shop" aria-controls="panel-shop" aria-selected="true" data-service-tab="shop" class="service-tab w-1/2 py-2.5 rounded-lg bg-white shadow-md text-gray-900 font-bold text-base text-center transition-all">Shop Repair</button>
+        <button type="button" role="tab" id="tab-home" aria-controls="panel-home" aria-selected="false" data-service-tab="home" class="service-tab w-1/2 py-2.5 rounded-lg text-gray-500 hover:text-gray-700 font-medium text-base text-center transition-all">At-Home Repair</button>
+      </div>
+      <div id="pricing-card-stage" class="grid max-w-xl mx-auto">
+        <div id="panel-shop" role="tabpanel" aria-labelledby="tab-shop" data-pricing-card="shop" class="col-start-1 row-start-1 w-full bg-white rounded-3xl border border-gray-200 shadow-sm p-6 md:p-8 flex flex-col ring-2 ring-blue-600 relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded-bl-lg">Most Popular</div>
+          <div class="flex items-center gap-3 border-b border-gray-100 pb-4 mb-4">
+            <div class="h-10 w-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8h9v8H3V8zm9 2.5h3.5L19 14v2h-7v-5.5z"/><circle cx="6.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900">Pickup &amp; Shop Repair</h3>
+          </div>
+          <p class="text-xs uppercase text-gray-500 font-semibold mb-1">STARTING AT</p>
+          <div class="text-3xl font-bold text-gray-900"><span class="text-lg align-top mr-1">$</span>69.95</div>
+          <p class="text-sm text-gray-500 mb-6">Pickup &amp; full diagnostic. Repairs quoted before work begins.</p>
+          <ul class="space-y-3 mb-6 flex-1">
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">Full diagnostic &amp; teardown</span></li>
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">Ideal for broken or dead machines</span></li>
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">We haul it both ways</span></li>
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">Written estimate before work begins</span></li>
+          </ul>
+          <button type="button" class="open-form w-full bg-blue-600 text-white text-lg font-bold py-3.5 px-6 rounded-xl hover:bg-blue-700 active:scale-95 transition-all mt-auto" data-service="shop">Schedule Pickup</button>
+        </div>
+        <div id="panel-home" role="tabpanel" aria-labelledby="tab-home" aria-hidden="true" inert data-pricing-card="home" class="col-start-1 row-start-1 w-full invisible pointer-events-none bg-white border-2 border-gray-100 shadow-xl rounded-2xl p-6 md:p-8 flex flex-col relative overflow-hidden">
+          <div class="flex items-center gap-3 border-b border-gray-100 pb-4 mb-4">
+            <div class="h-10 w-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1v-9.5z"/></svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900">At-Home Tune-Up</h3>
+          </div>
+          <p class="text-xs uppercase text-gray-500 font-semibold mb-1">Per visit</p>
+          <div class="text-3xl font-bold text-gray-900 mb-6"><span class="text-lg align-top mr-1">$</span>139.00</div>
+          <ul class="space-y-3 mb-6 flex-1">
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">Driveway maintenance</span></li>
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">Pre-season prep (running machines)</span></li>
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">Multi-point safety inspection</span></li>
+            <li class="flex items-start"><svg class="h-6 w-6 text-emerald-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-lg text-gray-900">Transparent flat-rate pricing</span></li>
+          </ul>
+          <button type="button" class="open-form w-full bg-blue-600 text-white text-lg font-bold py-3.5 px-6 rounded-xl hover:bg-blue-700 active:scale-95 transition-all mt-auto" data-service="at-home">Schedule Tune-Up</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Review rule: md+ 2x2 grid; <md single vertical column of the same 4 reviews. -->
+  <section id="wall-of-trust" class="py-12 px-3 md:px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight text-center mb-4 md:mb-12">See why Minneapolis trusts us.</h2>
+    <div id="curated-reviews" class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+      <article class="bg-white p-5 md:p-6 md:px-6 rounded-2xl shadow-sm border border-gray-100 relative w-full">
+        <div class="flex items-center gap-4 mb-3">
+          <div class="w-10 h-10 rounded-full bg-[#2B9A48] text-white flex items-center justify-center font-bold text-lg flex-shrink-0" aria-hidden="true">A</div>
+          <div class="min-w-0">
+            <div class="flex items-center" role="img" aria-label="5 out of 5 stars">
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+            </div>
+            <p class="text-sm font-semibold text-gray-900">David C., Minneapolis</p>
+          </div>
+        </div>
+        <p class="text-gray-700 text-sm md:text-base leading-relaxed">Extremely well! <strong>The process to arrange pickup was easy and fast</strong>, I got an informative estimate... and <strong>really fast repair and delivery back to me.</strong></p>
+      </article>
+      <article class="bg-white p-5 md:p-6 md:px-6 rounded-2xl shadow-sm border border-gray-100 relative w-full">
+        <div class="flex items-center gap-4 mb-3">
+          <div class="w-10 h-10 rounded-full bg-[#2B9A48] text-white flex items-center justify-center font-bold text-lg flex-shrink-0" aria-hidden="true">A</div>
+          <div class="min-w-0">
+            <div class="flex items-center" role="img" aria-label="5 out of 5 stars">
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+            </div>
+            <p class="text-sm font-semibold text-gray-900">Derrick L., Edina</p>
+          </div>
+        </div>
+        <p class="text-gray-700 text-sm md:text-base leading-relaxed">Services were provided in a very professional manner and my machine was <strong>returned to excellent condition</strong>.</p>
+      </article>
+      <article class="bg-white p-5 md:p-6 md:px-6 rounded-2xl shadow-sm border border-gray-100 relative w-full">
+        <div class="flex items-center gap-4 mb-3">
+          <div class="w-10 h-10 rounded-full bg-[#2B9A48] text-white flex items-center justify-center font-bold text-lg flex-shrink-0" aria-hidden="true">A</div>
+          <div class="min-w-0">
+            <div class="flex items-center" role="img" aria-label="5 out of 5 stars">
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+            </div>
+            <p class="text-sm font-semibold text-gray-900">Kristen P., St. Paul</p>
+          </div>
+        </div>
+        <p class="text-gray-700 text-sm md:text-base leading-relaxed"><strong>Picked up and dropped off snowblower</strong>, very responsive to initial request, <strong>quote was accurate</strong>, provided good info for how to maintain going forward.</p>
+      </article>
+      <article class="bg-white p-5 md:p-6 md:px-6 rounded-2xl shadow-sm border border-gray-100 relative w-full">
+        <div class="flex items-center gap-4 mb-3">
+          <div class="w-10 h-10 rounded-full bg-[#2B9A48] text-white flex items-center justify-center font-bold text-lg flex-shrink-0" aria-hidden="true">A</div>
+          <div class="min-w-0">
+            <div class="flex items-center" role="img" aria-label="5 out of 5 stars">
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+            </div>
+            <p class="text-sm font-semibold text-gray-900">Thomas H., Plymouth</p>
+          </div>
+        </div>
+        <p class="text-gray-700 text-sm md:text-base leading-relaxed"><strong>Communication throughout the entire process was second to none!</strong> They were very professional and courteous... I would hire again for snow blower repair.</p>
+      </article>
+    </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white px-4 sm:px-6 lg:px-8 border-t border-gray-200">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-10 sm:mb-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight text-center mb-4">How It Works</h2>
+        <p class="text-lg text-gray-500">Three simple steps to a snow-ready machine.</p>
+      </div>
+      <div class="max-w-xl mx-auto">
+        <div class="relative">
+          <div class="absolute left-8 top-8 bottom-8 border-l-2 border-dashed border-gray-200" aria-hidden="true"></div>
+          <div class="relative flex items-start gap-6 mb-8 sm:mb-10">
+            <div class="transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(37,99,235,0.2)] hover:border-blue-300 bg-white ring-1 ring-gray-100 border border-transparent rounded-full p-4 z-10 relative shrink-0">
+              <svg class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path stroke-linecap="round" d="M8 3v4m8-4v4M4 10h16"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 14h3v3H8z"/></svg>
+              <span class="bg-blue-600 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm font-bold absolute -top-1 -right-1">1</span>
+            </div>
+            <div class="pt-2 min-w-0">
+              <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-1.5 sm:mb-2">Request Pickup</h3>
+              <p class="text-gray-500 leading-relaxed text-[15px] sm:text-base">Tell us the issue in under 60 seconds. We'll text you to confirm your pickup window.</p>
+            </div>
+          </div>
+          <div class="relative flex items-start gap-6 mb-8 sm:mb-10">
+            <div class="transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(37,99,235,0.2)] hover:border-blue-300 bg-white ring-1 ring-gray-100 border border-transparent rounded-full p-4 z-10 relative shrink-0">
+              <svg class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8h10v8H3V8zm10 3h4l3 3v2h-7v-5z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
+              <span class="bg-blue-600 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm font-bold absolute -top-1 -right-1">2</span>
+            </div>
+            <div class="pt-2 min-w-0">
+              <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-1.5 sm:mb-2">We Haul &amp; Quote</h3>
+              <p class="text-gray-500 leading-relaxed text-[15px] sm:text-base">We do the heavy lifting and send a flat-rate written quote before any work starts.</p>
+            </div>
+          </div>
+          <div class="relative flex items-start gap-6">
+            <div class="transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(37,99,235,0.2)] hover:border-blue-300 bg-white ring-1 ring-gray-100 border border-transparent rounded-full p-4 z-10 relative shrink-0">
+              <svg class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" d="M12 3v18M5.6 6.5l12.8 11M3 12h18M5.6 17.5l12.8-11"/></svg>
+              <span class="bg-blue-600 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm font-bold absolute -top-1 -right-1">3</span>
+            </div>
+            <div class="pt-2 min-w-0">
+              <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-1.5 sm:mb-2">Delivered &amp; Ready</h3>
+              <p class="text-gray-500 leading-relaxed text-[15px] sm:text-base">Returned to your driveway, running like new before the next blizzard hits.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col items-center text-center px-0">
+          <button type="button" class="open-form bg-blue-600 text-white text-lg font-semibold rounded-xl px-8 py-4 shadow-lg shadow-blue-600/30 active:scale-95 transition-all duration-200 mt-12 w-full max-w-sm mx-auto">Schedule My Pickup</button>
+          <p class="text-sm text-gray-500 mt-3 text-center flex items-center justify-center gap-1 block max-w-sm mx-auto"><svg class="h-3.5 w-3.5 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path stroke-linecap="round" d="M8 11V8a4 4 0 018 0v3"/></svg>Secure booking. No hidden fees.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50 px-6 sm:px-8 lg:px-12">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-left">Your questions, answered.</h2>
+      <div class="bg-gray-100 rounded-3xl px-5">
+        <details class="group border-b border-gray-200"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>Do I need to be home for the pickup?</span></summary><p class="text-base text-gray-500 pb-5">Nope! As long as the snowblower is left outside in an accessible location, we can load it up and leave a confirmation text.</p></details>
+        <details class="group border-b border-gray-200"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>How long does a shop repair take?</span></summary><p class="text-base text-gray-500 pb-5">Most shop repairs are completed within 3 to 5 business days.</p></details>
+        <details class="group border-b border-gray-200"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>What if my machine needs more than a tune-up?</span></summary><p class="text-base text-gray-500 pb-5">We apply the tune-up fee toward a full Shop Repair and haul it back with us.</p></details>
+        <details class="group border-b border-gray-200"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>What brands do you service?</span></summary><p class="text-base text-gray-500 pb-5">We service Toro, Ariens, Craftsman, Troy-Bilt, Honda, and virtually all major small engine brands.</p></details>
+        <details class="group"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>What if my machine is too old and isn't worth fixing?</span></summary><p class="text-base text-gray-500 pb-5">We evaluate every machine honestly. However, older snowblowers are often heavy-duty and highly repairable compared to newer models. If it truly is cheaper to replace it than repair it, we will tell you upfront before any work begins.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking" class="scroll-mt-28 py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-xl mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Schedule Your Service</h2>
+        <p class="text-lg text-gray-500">Tell us what you need. We'll text you to confirm.</p>
+      </div>
+      <form id="booking-form" class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+        <fieldset class="mb-6">
+          <legend class="text-sm font-semibold text-gray-900 mb-3">Service Type</legend>
+          <div class="space-y-3">
+            <label class="flex items-center gap-3 w-full min-h-[56px] px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 cursor-pointer">
+              <input type="radio" name="service-type" value="shop" class="h-4 w-4 text-blue-600" required>
+              <span class="text-gray-900 font-medium">Pickup &amp; Shop Repair<span class="block text-sm font-medium text-gray-500">Starting at $69.95</span></span>
+            </label>
+            <label class="flex items-center gap-3 w-full min-h-[56px] px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 cursor-pointer">
+              <input type="radio" name="service-type" value="at-home" class="h-4 w-4 text-blue-600">
+              <span class="text-gray-900 font-medium">At-Home Tune-Up<span class="block text-sm font-medium text-gray-500">$139.00 per visit</span></span>
+            </label>
+          </div>
+        </fieldset>
+        <fieldset class="mb-6">
+          <legend class="text-sm font-semibold text-gray-900 mb-3">Machine Status</legend>
+          <div class="space-y-3">
+            <label class="flex items-center gap-3 w-full min-h-[56px] px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 cursor-pointer">
+              <input type="radio" name="machine-status" value="yes" class="h-4 w-4 text-blue-600" required>
+              <span class="text-gray-900 font-medium">Yes, it runs</span>
+            </label>
+            <label class="flex items-center gap-3 w-full min-h-[56px] px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 cursor-pointer">
+              <input type="radio" name="machine-status" value="no" class="h-4 w-4 text-blue-600">
+              <span class="text-gray-900 font-medium">No, it doesn't start</span>
+            </label>
+          </div>
+        </fieldset>
+        <div class="mb-6">
+          <label for="pickup-date" class="block text-sm font-semibold text-gray-900 mb-2">Date</label>
+          <input id="pickup-date" name="date" type="date" required class="w-full min-h-[56px] p-4 border border-gray-300 rounded-xl bg-gray-50 text-lg">
+        </div>
+        <div class="mb-6">
+          <label for="pickup-time" class="block text-sm font-semibold text-gray-900 mb-2">Time</label>
+          <input id="pickup-time" name="time" type="time" required class="w-full min-h-[56px] p-4 border border-gray-300 rounded-xl bg-gray-50 text-lg">
+        </div>
+        <fieldset class="mb-2">
+          <legend class="text-sm font-semibold text-gray-900 mb-3">Contact Info</legend>
+          <div class="space-y-4">
+            <input id="contact-name" name="name" placeholder="Full name" required class="w-full min-h-[56px] p-4 rounded-xl border border-gray-300 bg-gray-50 text-lg">
+            <input id="contact-zip" name="zip" placeholder="ZIP Code" inputmode="numeric" required class="w-full min-h-[56px] p-4 rounded-xl border border-gray-300 bg-gray-50 text-lg">
+            <input id="contact-phone" name="phone" placeholder="Phone" type="tel" required class="w-full min-h-[56px] p-4 rounded-xl border border-gray-300 bg-gray-50 text-lg">
+          </div>
+        </fieldset>
+        <div id="out-of-bounds-alert" class="hidden mt-4 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">That ZIP is outside our current pickup area.</div>
+        <p id="quote-line" class="hidden mt-4 text-sm font-medium text-gray-700"></p>
+        <div id="booking-success" class="hidden mt-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">You're on the list. We'll text you to confirm the pickup window.</div>
+        <button type="submit" id="btn-submit-booking" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg mt-6">Submit Request</button>
+      </form>
+    </div>
+  </section>
+  </main>
+
+  <footer class="bg-gray-50 border-t border-gray-200 py-8 mt-12 w-full">
+    <div class="flex flex-col items-center justify-center space-y-2 text-sm text-gray-500 text-center">
+      <p>Twin City Small Engine®</p>
+      <p>702 Southview Blvd, South St Paul, MN 55075</p>
+      <p>Call us: <a href="tel:6127250672" class="underline">612-725-0672</a></p>
+      <p>© 2026 Twin City Small Engine. All rights reserved.</p>
+    </div>
+  </footer>
+
+<script>
+if(history.scrollRestoration){history.scrollRestoration="manual";}
+document.addEventListener("DOMContentLoaded",()=>{
+  function scrollToBooking(preset){
+    if(preset){
+      const radio=document.querySelector('input[name="service-type"][value="'+preset+'"]');
+      if(radio){radio.checked=true;}
+    }
+    const booking=document.getElementById("booking");
+    if(booking){booking.scrollIntoView({behavior:"smooth",block:"start"});}
+  }
+  const openFormBtn=document.getElementById("open-form");
+  if(openFormBtn){openFormBtn.addEventListener("click",()=>scrollToBooking(null));}
+  document.querySelectorAll(".open-form").forEach(b=>b.addEventListener("click",()=>scrollToBooking(b.getAttribute("data-service"))));
+  const bookingForm=document.getElementById("booking-form");
+  if(bookingForm){
+    bookingForm.addEventListener("submit",async(e)=>{
+      e.preventDefault();
+      const service=document.querySelector('input[name="service-type"]:checked');
+      const runs=document.querySelector('input[name="machine-status"]:checked');
+      const name=document.getElementById("contact-name").value.trim();
+      const zipCode=document.getElementById("contact-zip").value.trim();
+      const phone=document.getElementById("contact-phone").value.trim();
+      const date=document.getElementById("pickup-date").value;
+      const time=document.getElementById("pickup-time").value;
+      if(!service||!runs||!name||!zipCode||!phone||!date||!time)return;
+      const zip=String(zipCode).replace(/\D/g,"");
+      const alertEl=document.getElementById("out-of-bounds-alert");
+      const quote=document.getElementById("quote-line");
+      const success=document.getElementById("booking-success");
+      if(!/^55\d{3}$/.test(zip)){
+        alertEl.classList.remove("hidden");
+        quote.classList.add("hidden");
+        success.classList.add("hidden");
+        return;
+      }
+      alertEl.classList.add("hidden");
+      const price=(service.value==="at-home"||runs.value==="yes")?139:69.95;
+      quote.textContent="Estimated service charge: $"+Number(price).toFixed(2);
+      quote.classList.remove("hidden");
+      const b=document.getElementById("btn-submit-booking");
+      b.textContent="Scheduling...";
+      await new Promise(r=>setTimeout(r,400));
+      success.classList.remove("hidden");
+      b.textContent="Submit Request";
+    });
+  }
+
+  let activeTab="shop";
+  const serviceTabs=document.querySelectorAll("[data-service-tab]");
+  const pricingCards=document.querySelectorAll("[data-pricing-card]");
+  function setServiceTab(key){
+    activeTab=key;
+    serviceTabs.forEach(tab=>{
+      const on=tab.getAttribute("data-service-tab")===key;
+      tab.setAttribute("aria-selected",on?"true":"false");
+      tab.classList.toggle("bg-white",on);
+      tab.classList.toggle("shadow-md",on);
+      tab.classList.toggle("text-gray-900",on);
+      tab.classList.toggle("font-bold",on);
+      tab.classList.toggle("text-gray-500",!on);
+      tab.classList.toggle("hover:text-gray-700",!on);
+      tab.classList.toggle("font-medium",!on);
+    });
+    pricingCards.forEach(card=>{
+      const on=card.getAttribute("data-pricing-card")===key;
+      card.classList.toggle("invisible",!on);
+      card.classList.toggle("pointer-events-none",!on);
+      card.inert=!on;
+      card.setAttribute("aria-hidden",on?"false":"true");
+    });
+  }
+  serviceTabs.forEach(tab=>tab.addEventListener("click",(e)=>{
+    e.preventDefault();
+    setServiceTab(tab.getAttribute("data-service-tab"));
+  }));
+  setServiceTab(activeTab);
+});
+</script>
+</body>
 </html>
