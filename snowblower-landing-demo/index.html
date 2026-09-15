@@ -69,11 +69,11 @@
         <p class="text-lg text-gray-500 max-w-2xl mx-auto">Transparent pricing. No hidden fees. We bring the shop to you, or haul it back to ours.</p>
       </div>
       <div id="service-tabs" class="flex bg-gray-200 p-1.5 rounded-xl max-w-sm mx-auto mb-10 relative" role="tablist" aria-label="Service type">
-        <button type="button" role="tab" aria-selected="true" data-service-tab="shop" class="service-tab w-1/2 py-2.5 rounded-lg bg-white shadow-md text-gray-900 font-bold text-base text-center transition-all">Shop Repair</button>
-        <button type="button" role="tab" aria-selected="false" data-service-tab="at-home" class="service-tab w-1/2 py-2.5 rounded-lg text-gray-500 hover:text-gray-700 font-medium text-base text-center transition-all">At-Home Repair</button>
+        <button type="button" role="tab" id="tab-shop" aria-controls="panel-shop" aria-selected="true" data-service-tab="shop" class="service-tab w-1/2 py-2.5 rounded-lg bg-white shadow-md text-gray-900 font-bold text-base text-center transition-all">Shop Repair</button>
+        <button type="button" role="tab" id="tab-home" aria-controls="panel-home" aria-selected="false" data-service-tab="home" class="service-tab w-1/2 py-2.5 rounded-lg text-gray-500 hover:text-gray-700 font-medium text-base text-center transition-all">At-Home Repair</button>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        <div data-pricing-card="shop" class="scroll-mt-28 bg-white rounded-3xl border border-gray-200 shadow-sm p-6 md:p-8 flex flex-col ring-2 ring-blue-600 relative overflow-hidden">
+      <div id="pricing-card-stage" class="grid max-w-xl mx-auto">
+        <div id="panel-shop" role="tabpanel" aria-labelledby="tab-shop" data-pricing-card="shop" class="col-start-1 row-start-1 bg-white rounded-3xl border border-gray-200 shadow-sm p-6 md:p-8 flex flex-col ring-2 ring-blue-600 relative overflow-hidden">
           <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded-bl-lg">Most Popular</div>
           <div class="flex items-center gap-3 border-b border-gray-100 pb-4 mb-4">
             <div class="h-10 w-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
@@ -92,7 +92,7 @@
           </ul>
           <button type="button" class="open-form w-full bg-blue-600 text-white text-lg font-bold py-3.5 px-6 rounded-xl hover:bg-blue-700 active:scale-95 transition-all mt-auto" data-service="shop">Schedule Pickup</button>
         </div>
-        <div data-pricing-card="at-home" class="scroll-mt-28 bg-white border-2 border-gray-100 shadow-xl rounded-2xl p-6 md:p-8 flex flex-col relative overflow-hidden">
+        <div id="panel-home" role="tabpanel" aria-labelledby="tab-home" aria-hidden="true" data-pricing-card="home" class="col-start-1 row-start-1 invisible pointer-events-none bg-white border-2 border-gray-100 shadow-xl rounded-2xl p-6 md:p-8 flex flex-col relative overflow-hidden">
           <div class="flex items-center gap-3 border-b border-gray-100 pb-4 mb-4">
             <div class="h-10 w-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
               <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1v-9.5z"/></svg>
@@ -362,9 +362,11 @@ document.addEventListener("DOMContentLoaded",()=>{
     });
   }
 
+  let activeTab="shop";
   const serviceTabs=document.querySelectorAll("[data-service-tab]");
   const pricingCards=document.querySelectorAll("[data-pricing-card]");
   function setServiceTab(key){
+    activeTab=key;
     serviceTabs.forEach(tab=>{
       const on=tab.getAttribute("data-service-tab")===key;
       tab.setAttribute("aria-selected",on?"true":"false");
@@ -378,19 +380,16 @@ document.addEventListener("DOMContentLoaded",()=>{
     });
     pricingCards.forEach(card=>{
       const on=card.getAttribute("data-pricing-card")===key;
-      card.classList.toggle("ring-2",on);
-      card.classList.toggle("ring-blue-600",on);
-      card.classList.remove("hidden");
-      card.classList.add("flex");
+      card.classList.toggle("invisible",!on);
+      card.classList.toggle("pointer-events-none",!on);
+      card.setAttribute("aria-hidden",on?"false":"true");
     });
   }
-  serviceTabs.forEach(tab=>tab.addEventListener("click",()=>{
-    const key=tab.getAttribute("data-service-tab");
-    setServiceTab(key);
-    const card=document.querySelector('[data-pricing-card="'+key+'"]');
-    if(card){card.scrollIntoView({behavior:"smooth",block:"start"});}
+  serviceTabs.forEach(tab=>tab.addEventListener("click",(e)=>{
+    e.preventDefault();
+    setServiceTab(tab.getAttribute("data-service-tab"));
   }));
-  setServiceTab("shop");
+  setServiceTab(activeTab);
 });
 </script>
 </body>
