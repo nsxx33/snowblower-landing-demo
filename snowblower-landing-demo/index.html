@@ -70,27 +70,22 @@
 
   <main class="pb-0 md:pb-0">
   <section id="hero" class="block w-full py-10 px-4 sm:px-6 md:py-32 md:px-12 lg:px-16">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-      <div>
-        <span class="inline-block bg-blue-100 text-blue-800 text-sm font-bold px-4 py-1 rounded-full mb-4 md:mb-8">Winter Prep: Currently booking pickups for the week of Sept 14</span>
-        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-4 md:mb-8">Professional Snowblower Repair <span class="text-blue-600">Picked Up &amp; Delivered.</span></h1>
-        <p class="text-lg text-gray-500 mb-5 md:mb-10 max-w-md">Serving the Minneapolis metro. We haul it, fix it, and return it ready for the next blizzard so you never touch a ramp.</p>
-        <div id="hero-cta-wrap" class="flex flex-col items-start mb-2 md:mb-8">
-          <a href="#pricing" id="compare-pricing" class="md:hidden bg-transparent border-2 border-blue-600 text-blue-600 font-semibold px-6 py-2.5 rounded-full text-sm">Compare Pricing</a>
-          <button type="button" id="open-form" class="hidden md:inline-flex bg-blue-600 text-white text-lg font-semibold py-4 px-8 rounded-xl shadow-lg shadow-blue-600/30 hover:-translate-y-1 active:scale-[0.98] transition-all duration-200 ease-out">Schedule My Pickup</button>
-          <div class="flex flex-col items-center mt-6 w-full">
-            <img src="snowblower-review.png" alt="Angi Super Service Award 2023 — 4.6 from 413 verified reviews" class="w-[120px] md:w-[140px] max-w-[140px] object-contain mix-blend-multiply" onerror="this.onerror=null;this.src='snowblower-review.svg'" />
-            <div class="flex flex-wrap justify-center gap-6 md:gap-10 items-center mt-6">
-              <img src="/toro.png" alt="Toro" class="h-5 md:h-6 object-contain grayscale opacity-60 mix-blend-multiply" />
-              <img src="/ariens.png" alt="Ariens" class="h-5 md:h-6 object-contain grayscale opacity-60 mix-blend-multiply" />
-              <img src="/craftsman.png" alt="Craftsman" class="h-5 md:h-6 object-contain grayscale opacity-60 mix-blend-multiply" />
-              <img src="/troy-bilt.png" alt="Troy-Bilt" class="h-5 md:h-6 object-contain grayscale opacity-60 mix-blend-multiply" />
-            </div>
-          </div>
-        </div>
+    <div class="max-w-7xl mx-auto flex flex-col md:grid md:grid-cols-2 md:gap-x-16 md:items-center">
+      <span class="inline-block bg-blue-100 text-blue-800 text-sm font-bold px-4 py-1 rounded-full mb-4 md:mb-8 w-fit md:col-start-1 md:row-start-1">Winter Prep: Currently booking pickups for the week of Sept 14</span>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-4 md:mb-8 md:col-start-1 md:row-start-2">Professional Snowblower Repair <span class="text-blue-600">Picked Up &amp; Delivered.</span></h1>
+      <p class="text-lg text-gray-500 mb-5 md:mb-10 max-w-md md:col-start-1 md:row-start-3">Serving the Minneapolis metro. We haul it, fix it, and return it ready for the next blizzard so you never touch a ramp.</p>
+      <img src="hero-truck.webp" alt="Snowblower pickup and delivery truck" class="h-48 md:h-auto w-full object-cover rounded-xl shadow-sm my-6 object-[center_55%] md:col-start-2 md:row-start-1 md:row-span-6">
+      <div id="hero-cta-wrap" class="flex flex-col items-center mb-2 md:mb-8 w-full md:col-start-1 md:row-start-4">
+        <button type="button" id="open-form" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-8 rounded-full w-full max-w-sm mx-auto shadow-md">Schedule My Pickup</button>
       </div>
-      <div class="relative w-full min-w-0 rounded-2xl overflow-hidden shadow-xl aspect-[4/3] md:aspect-video">
-        <img src="hero-truck.webp" alt="Snowblower pickup and delivery truck" class="block w-full h-full object-cover object-[center_55%]">
+      <div class="flex flex-col items-center justify-center text-center mx-auto w-full mt-4 md:col-start-1 md:row-start-5">
+        <img src="snowblower-review.png" alt="Angi Super Service Award 2023 — 4.6 from 413 verified reviews" class="w-[120px] md:w-[140px] max-w-[140px] object-contain mix-blend-multiply" onerror="this.onerror=null;this.src='snowblower-review.svg'" />
+        <div class="flex flex-wrap justify-center gap-6 md:gap-10 items-center mt-6">
+          <img src="/toro.png" alt="Toro" class="h-5 md:h-6 object-contain grayscale opacity-60 mix-blend-multiply" />
+          <img src="/ariens.png" alt="Ariens" class="h-5 md:h-6 object-contain grayscale opacity-60 mix-blend-multiply" />
+          <img src="/craftsman.png" alt="Craftsman" class="h-5 md:h-6 object-contain grayscale opacity-60 mix-blend-multiply" />
+          <img src="/troy-bilt.png" alt="Troy-Bilt" class="h-5 md:h-6 object-contain grayscale opacity-60 mix-blend-multiply" />
+        </div>
       </div>
     </div>
   </section>
