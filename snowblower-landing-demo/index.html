@@ -14,11 +14,6 @@
     .option-check-pop { animation: check-pop 200ms ease-out forwards; }
     details > summary { list-style: none; }
     details > summary::-webkit-details-marker { display: none; }
-    .ios-only { display: none !important; }
-    html.is-ios .ios-only { display: flex !important; }
-    html.is-ios .non-ios { display: none !important; }
-    .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
-    #sheet-track { transition: transform 300ms ease; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
@@ -245,154 +240,127 @@
       <div class="bg-gray-100 rounded-3xl px-5">
         <details class="group border-b border-gray-200"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>Do I need to be home for the pickup?</span></summary><p class="text-base text-gray-500 pb-5">Nope! As long as the snowblower is left outside in an accessible location, we can load it up and leave a confirmation text.</p></details>
         <details class="group border-b border-gray-200"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>How long does a shop repair take?</span></summary><p class="text-base text-gray-500 pb-5">Most shop repairs are completed within 3 to 5 business days.</p></details>
-        <details class="group"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>What if my machine needs more than a tune-up?</span></summary><p class="text-base text-gray-500 pb-5">We apply the tune-up fee toward a full Shop Repair and haul it back with us.</p></details>
+        <details class="group border-b border-gray-200"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>What if my machine needs more than a tune-up?</span></summary><p class="text-base text-gray-500 pb-5">We apply the tune-up fee toward a full Shop Repair and haul it back with us.</p></details>
+        <details class="group border-b border-gray-200"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>What brands do you service?</span></summary><p class="text-base text-gray-500 pb-5">We service Toro, Ariens, Craftsman, Troy-Bilt, Honda, and virtually all major small engine brands.</p></details>
+        <details class="group"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>What if my machine is too old and isn't worth fixing?</span></summary><p class="text-base text-gray-500 pb-5">We evaluate every machine honestly. However, older snowblowers are often heavy-duty and highly repairable compared to newer models. If it truly is cheaper to replace it than repair it, we will tell you upfront before any work begins.</p></details>
       </div>
+    </div>
+  </section>
+
+  <section id="booking" class="scroll-mt-28 py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-xl mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Schedule Your Service</h2>
+        <p class="text-lg text-gray-500">Tell us what you need. We'll text you to confirm.</p>
+      </div>
+      <form id="booking-form" class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+        <fieldset class="mb-6">
+          <legend class="text-sm font-semibold text-gray-900 mb-3">Service Type</legend>
+          <div class="space-y-3">
+            <label class="flex items-center gap-3 w-full min-h-[56px] px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 cursor-pointer">
+              <input type="radio" name="service-type" value="shop" class="h-4 w-4 text-blue-600" required>
+              <span class="text-gray-900 font-medium">Pickup &amp; Shop Repair<span class="block text-sm font-medium text-gray-500">Starting at $69.95</span></span>
+            </label>
+            <label class="flex items-center gap-3 w-full min-h-[56px] px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 cursor-pointer">
+              <input type="radio" name="service-type" value="at-home" class="h-4 w-4 text-blue-600">
+              <span class="text-gray-900 font-medium">At-Home Tune-Up<span class="block text-sm font-medium text-gray-500">$139.00 per visit</span></span>
+            </label>
+          </div>
+        </fieldset>
+        <fieldset class="mb-6">
+          <legend class="text-sm font-semibold text-gray-900 mb-3">Machine Status</legend>
+          <div class="space-y-3">
+            <label class="flex items-center gap-3 w-full min-h-[56px] px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 cursor-pointer">
+              <input type="radio" name="machine-status" value="yes" class="h-4 w-4 text-blue-600" required>
+              <span class="text-gray-900 font-medium">Yes, it runs</span>
+            </label>
+            <label class="flex items-center gap-3 w-full min-h-[56px] px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 cursor-pointer">
+              <input type="radio" name="machine-status" value="no" class="h-4 w-4 text-blue-600">
+              <span class="text-gray-900 font-medium">No, it doesn't start</span>
+            </label>
+          </div>
+        </fieldset>
+        <div class="mb-6">
+          <label for="pickup-date" class="block text-sm font-semibold text-gray-900 mb-2">Date</label>
+          <input id="pickup-date" name="date" type="date" required class="w-full min-h-[56px] p-4 border border-gray-300 rounded-xl bg-gray-50 text-lg">
+        </div>
+        <div class="mb-6">
+          <label for="pickup-time" class="block text-sm font-semibold text-gray-900 mb-2">Time</label>
+          <input id="pickup-time" name="time" type="time" required class="w-full min-h-[56px] p-4 border border-gray-300 rounded-xl bg-gray-50 text-lg">
+        </div>
+        <fieldset class="mb-2">
+          <legend class="text-sm font-semibold text-gray-900 mb-3">Contact Info</legend>
+          <div class="space-y-4">
+            <input id="contact-name" name="name" placeholder="Full name" required class="w-full min-h-[56px] p-4 rounded-xl border border-gray-300 bg-gray-50 text-lg">
+            <input id="contact-zip" name="zip" placeholder="ZIP Code" inputmode="numeric" required class="w-full min-h-[56px] p-4 rounded-xl border border-gray-300 bg-gray-50 text-lg">
+            <input id="contact-phone" name="phone" placeholder="Phone" type="tel" required class="w-full min-h-[56px] p-4 rounded-xl border border-gray-300 bg-gray-50 text-lg">
+          </div>
+        </fieldset>
+        <div id="out-of-bounds-alert" class="hidden mt-4 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">That ZIP is outside our current pickup area.</div>
+        <p id="quote-line" class="hidden mt-4 text-sm font-medium text-gray-700"></p>
+        <div id="booking-success" class="hidden mt-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">You're on the list. We'll text you to confirm the pickup window.</div>
+        <button type="submit" id="btn-submit-booking" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg mt-6">Submit Request</button>
+      </form>
     </div>
   </section>
   </main>
 
-  <div id="booking-modal" class="hidden fixed inset-0 z-[60]">
-    <div id="modal-backdrop" class="absolute inset-0 bg-black/60 transition-opacity"></div>
-    <div id="booking-sheet" class="absolute inset-x-0 bottom-0 bg-white rounded-t-3xl shadow-2xl transition-transform duration-300 translate-y-0 pb-safe max-h-[92vh] flex flex-col md:left-1/2 md:right-auto md:w-full md:max-w-lg md:-translate-x-1/2 md:top-1/2 md:-translate-y-1/2 md:bottom-auto md:rounded-2xl">
-      <div class="flex justify-center pt-3 pb-1 md:hidden">
-        <span class="h-1.5 w-10 rounded-full bg-gray-300" aria-hidden="true"></span>
-      </div>
-      <div class="px-4 py-2 flex items-center justify-between border-b border-gray-100">
-        <button type="button" id="btn-back" class="hidden text-gray-900 font-medium min-h-[48px] px-2">Back</button>
-        <span id="modal-step-label" class="text-sm font-medium text-gray-500">Step 1 of 4</span>
-        <button type="button" id="btn-close" class="text-gray-500 font-medium min-h-[48px] px-2">Close</button>
-      </div>
-      <div class="overflow-hidden flex-1">
-        <div id="sheet-track" class="flex w-[500%] transition-transform duration-300 ease-out">
-          <div class="w-1/5 shrink-0 p-6" data-step="0">
-            <h2 class="text-2xl font-extrabold text-gray-900 mb-2">Choose a service</h2>
-            <p class="text-sm text-gray-500 mb-4">Tap one to continue.</p>
-            <div class="space-y-3">
-              <button type="button" class="service-pick w-full min-h-[64px] text-left px-4 py-4 rounded-2xl border border-gray-200 bg-white text-gray-900 font-semibold active:scale-[0.98]" data-service="shop">Pickup &amp; Shop Repair<span class="block text-sm font-medium text-gray-500">Starting at $69.95</span></button>
-              <button type="button" class="service-pick w-full min-h-[64px] text-left px-4 py-4 rounded-2xl border border-gray-200 bg-white text-gray-900 font-semibold active:scale-[0.98]" data-service="at-home">At-Home Tune-Up<span class="block text-sm font-medium text-gray-500">$139.00 per visit</span></button>
-            </div>
-          </div>
-          <div class="w-1/5 shrink-0 p-6" data-step="1">
-            <h2 class="text-2xl font-extrabold text-gray-900 mb-2">Does the machine run?</h2>
-            <div class="space-y-3 mt-4">
-              <button type="button" class="run-pick w-full min-h-[64px] px-4 py-4 rounded-2xl border border-gray-200 bg-white text-gray-900 font-semibold text-left active:scale-[0.98]" data-runs="yes">Yes, it runs</button>
-              <button type="button" class="run-pick w-full min-h-[64px] px-4 py-4 rounded-2xl border border-gray-200 bg-white text-gray-900 font-semibold text-left active:scale-[0.98]" data-runs="no">No, it doesn't start</button>
-            </div>
-          </div>
-          <div class="w-1/5 shrink-0 p-6" data-step="2">
-            <h2 class="text-2xl font-extrabold text-gray-900 mb-2">Pickup window</h2>
-            <p class="text-sm text-gray-500 mb-4">Native date and time pickers.</p>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Date</label>
-            <input id="pickup-date" type="date" class="w-full p-4 border rounded-xl bg-gray-50 text-lg mb-4">
-            <label class="block text-sm font-medium text-gray-700 mb-1">Time</label>
-            <input id="pickup-time" type="time" class="w-full p-4 border rounded-xl bg-gray-50 text-lg mb-6">
-            <button type="button" id="btn-datetime-next" class="w-full min-h-[56px] bg-blue-600 text-white font-bold rounded-xl">Next</button>
-          </div>
-          <div class="w-1/5 shrink-0 p-6" data-step="3">
-            <h2 class="text-2xl font-extrabold text-gray-900 mb-2">Contact</h2>
-            <div class="space-y-4 mt-4">
-              <input id="contact-name" placeholder="Full name" class="w-full min-h-[56px] p-4 rounded-xl border border-gray-300 bg-gray-50 text-lg">
-              <input id="contact-zip" placeholder="ZIP Code" inputmode="numeric" class="w-full min-h-[56px] p-4 rounded-xl border border-gray-300 bg-gray-50 text-lg">
-              <input id="contact-phone" placeholder="Phone" type="tel" class="w-full min-h-[56px] p-4 rounded-xl border border-gray-300 bg-gray-50 text-lg">
-            </div>
-            <div id="out-of-bounds-alert" class="hidden mt-4 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">That ZIP is outside our current pickup area.</div>
-            <p id="quote-line" class="hidden mt-4 text-sm font-medium text-gray-700"></p>
-            <button type="button" id="btn-submit-booking" class="mt-6 w-full min-h-[56px] bg-blue-600 text-white font-bold rounded-xl">Submit Request</button>
-          </div>
-          <div class="w-1/5 shrink-0 p-6 text-center" data-step="4">
-            <div class="mx-auto mb-6 h-16 w-16 rounded-full bg-emerald-100 text-emerald-500 flex items-center justify-center text-3xl">✓</div>
-            <h2 class="text-2xl font-extrabold text-gray-900 mb-2">You're on the list</h2>
-            <p class="text-gray-500">We'll text you to confirm the pickup window.</p>
-          </div>
-        </div>
-      </div>
+  <footer class="bg-gray-50 border-t border-gray-200 py-8 mt-12 w-full">
+    <div class="flex flex-col items-center justify-center space-y-2 text-sm text-gray-500 text-center">
+      <p>Twin City Small Engine®</p>
+      <p>702 Southview Blvd, South St Paul, MN 55075</p>
+      <p>Call us: <a href="tel:6127250672" class="underline">612-725-0672</a></p>
+      <p>© 2026 Twin City Small Engine. All rights reserved.</p>
     </div>
-  </div>
+  </footer>
 
 <script>
 if(history.scrollRestoration){history.scrollRestoration="manual";}
-if(location.hash){history.replaceState(null,"",location.pathname+location.search);}
-window.scrollTo(0,0);
 document.addEventListener("DOMContentLoaded",()=>{
-  window.scrollTo(0,0);
-  if(/iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase())){
-    document.documentElement.classList.add("is-ios");
-  }
-  const modal=document.getElementById("booking-modal");
-  const track=document.getElementById("sheet-track");
-  const backBtn=document.getElementById("btn-back");
-  const stepLabel=document.getElementById("modal-step-label");
-  let step=0;
-  let formData={serviceType:null,runs:null,date:"",time:"",name:"",zipCode:"",phone:"",price:null};
-  function goTo(i){
-    step=i;
-    track.style.transform="translateX(-"+(i*20)+"%)";
-    backBtn.classList.toggle("hidden",i===0||i===4);
-    stepLabel.textContent=i===4?"Done":"Step "+(i+1)+" of 4";
-  }
-  function openModal(preset){
-    formData={serviceType:preset||null,runs:null,date:"",time:"",name:"",zipCode:"",phone:"",price:null};
-    document.getElementById("contact-name").value="";
-    document.getElementById("contact-zip").value="";
-    document.getElementById("contact-phone").value="";
-    document.getElementById("pickup-date").value="";
-    document.getElementById("pickup-time").value="";
-    document.getElementById("out-of-bounds-alert").classList.add("hidden");
-    document.getElementById("quote-line").classList.add("hidden");
-    modal.classList.remove("hidden");
-    document.body.classList.add("overflow-hidden");
-    goTo(preset?1:0);
-  }
-  function closeModal(){
-    modal.classList.add("hidden");
-    document.body.classList.remove("overflow-hidden");
+  function scrollToBooking(preset){
+    if(preset){
+      const radio=document.querySelector('input[name="service-type"][value="'+preset+'"]');
+      if(radio){radio.checked=true;}
+    }
+    const booking=document.getElementById("booking");
+    if(booking){booking.scrollIntoView({behavior:"smooth",block:"start"});}
   }
   const openFormBtn=document.getElementById("open-form");
-  if(openFormBtn){openFormBtn.addEventListener("click",()=>openModal(null));}
-  const comparePricingBtn=document.getElementById("compare-pricing");
-  if(comparePricingBtn){
-    comparePricingBtn.addEventListener("click",(e)=>{
+  if(openFormBtn){openFormBtn.addEventListener("click",()=>scrollToBooking(null));}
+  document.querySelectorAll(".open-form").forEach(b=>b.addEventListener("click",()=>scrollToBooking(b.getAttribute("data-service"))));
+  const bookingForm=document.getElementById("booking-form");
+  if(bookingForm){
+    bookingForm.addEventListener("submit",async(e)=>{
       e.preventDefault();
-      const target=document.getElementById("pricing");
-      if(target){target.scrollIntoView({behavior:"smooth",block:"start"});}
+      const service=document.querySelector('input[name="service-type"]:checked');
+      const runs=document.querySelector('input[name="machine-status"]:checked');
+      const name=document.getElementById("contact-name").value.trim();
+      const zipCode=document.getElementById("contact-zip").value.trim();
+      const phone=document.getElementById("contact-phone").value.trim();
+      const date=document.getElementById("pickup-date").value;
+      const time=document.getElementById("pickup-time").value;
+      if(!service||!runs||!name||!zipCode||!phone||!date||!time)return;
+      const zip=String(zipCode).replace(/\D/g,"");
+      const alertEl=document.getElementById("out-of-bounds-alert");
+      const quote=document.getElementById("quote-line");
+      const success=document.getElementById("booking-success");
+      if(!/^55\d{3}$/.test(zip)){
+        alertEl.classList.remove("hidden");
+        quote.classList.add("hidden");
+        success.classList.add("hidden");
+        return;
+      }
+      alertEl.classList.add("hidden");
+      const price=(service.value==="at-home"||runs.value==="yes")?139:69.95;
+      quote.textContent="Estimated service charge: $"+Number(price).toFixed(2);
+      quote.classList.remove("hidden");
+      const b=document.getElementById("btn-submit-booking");
+      b.textContent="Scheduling...";
+      await new Promise(r=>setTimeout(r,400));
+      success.classList.remove("hidden");
+      b.textContent="Submit Request";
     });
   }
-  document.querySelectorAll(".open-form").forEach(b=>b.addEventListener("click",()=>openModal(b.getAttribute("data-service"))));
-  document.getElementById("btn-close").addEventListener("click",closeModal);
-  document.getElementById("modal-backdrop").addEventListener("click",closeModal);
-  document.getElementById("btn-back").addEventListener("click",()=>{if(step>0&&step<4)goTo(step-1);});
-  document.querySelectorAll(".service-pick").forEach(b=>b.addEventListener("click",()=>{formData.serviceType=b.getAttribute("data-service");goTo(1);}));
-  document.querySelectorAll(".run-pick").forEach(b=>b.addEventListener("click",()=>{formData.runs=b.getAttribute("data-runs");goTo(2);}));
-  document.getElementById("btn-datetime-next").addEventListener("click",()=>{
-    formData.date=document.getElementById("pickup-date").value;
-    formData.time=document.getElementById("pickup-time").value;
-    if(!formData.date||!formData.time)return;
-    goTo(3);
-  });
-  document.getElementById("btn-submit-booking").addEventListener("click",async()=>{
-    formData.name=document.getElementById("contact-name").value.trim();
-    formData.zipCode=document.getElementById("contact-zip").value.trim();
-    formData.phone=document.getElementById("contact-phone").value.trim();
-    if(!formData.name||!formData.zipCode||!formData.phone)return;
-    const zip=String(formData.zipCode).replace(/\D/g,"");
-    const alertEl=document.getElementById("out-of-bounds-alert");
-    const quote=document.getElementById("quote-line");
-    if(!/^55\d{3}$/.test(zip)){
-      formData.price=null;
-      alertEl.classList.remove("hidden");
-      quote.classList.add("hidden");
-      return;
-    }
-    alertEl.classList.add("hidden");
-    formData.price=(formData.serviceType==="at-home"||formData.runs==="yes")?139:69.95;
-    quote.textContent="Estimated service charge: $"+Number(formData.price).toFixed(2);
-    quote.classList.remove("hidden");
-    const b=document.getElementById("btn-submit-booking");
-    b.textContent="Scheduling...";
-    await new Promise(r=>setTimeout(r,400));
-    goTo(4);
-    b.textContent="Submit Request";
-  });
 
   const serviceTabs=document.querySelectorAll("[data-service-tab]");
   const pricingCards=document.querySelectorAll("[data-pricing-card]");
