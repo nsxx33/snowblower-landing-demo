@@ -1,0 +1,19 @@
+# Twin City Small Engine - Global Project Rules
+
+## 1. Design System & Grid Alignment
+- **The "Invisible Line" Rule**: All page sections (Headers, Heros, Content) MUST use the exact same max-width container and padding to ensure perfect left-and-right visual alignment.
+- **Master Container**: Use `max-w-6xl mx-auto w-full px-4 md:px-8` (or the exact equivalent currently locked into the Hero section) for ALL section wrappers. Never let elements float outside this constraint on desktop.
+
+## 2. Typography & Rhythm
+- **H1 (Hero)**: High contrast, heavily weighted, scaling appropriately from mobile to desktop.
+- **H2 (Section Headers)**: Must maintain breathing room. Standardize spacing using `mb-4 md:mb-12` to ensure desktop layouts are not cramped.
+- **Mobile-First**: Always use base Tailwind classes for mobile, and `md:` or `lg:` prefixes for desktop. Do not use hardcoded pixel values.
+
+## 3. Booking Routing (Strict)
+- Do NOT build local lead forms.
+- ALL "Schedule" or "Book" CTA buttons must link to the external booking app: `[https://shop-command-phi.vercel.app/book](https://shop-command-phi.vercel.app/book)`
+- Must append the correct URL parameter: `?job=Pickup` for shop repairs, and `?job=Tune-up` for at-home services.
+
+## 4. Trust & Brand Elements
+- Always maintain high-visibility for the 4 brand logos (Toro, Ariens, Craftsman, Troy-Bilt). Scale them appropriately on desktop.
+- Always include the local physical address (702 Southview Blvd, South St Paul, MN 55075) in footers to build local SEO and trust.
