@@ -5,5 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Snowblower Repair & Tune-Up</title>
 </head>
-<body>RESTORE_IN_PROGRESS</body>
+<body>
+<script>
+(async function () {
+  const base = "https://raw.githubusercontent.com/nsxx33/snowblower-landing-demo/93bc2539c1603c91bca4e8ab46e42cffde9d1ebf/snowblower-landing-demo/";
+  const assets = ["apple-messages-glossy.png","snowblower-review.png","snowblower-review.svg","hero-truck.webp","toro.png","ariens.png","craftsman.png","troy-bilt.png"];
+  const res = await fetch(base + "index.html");
+  let html = await res.text();
+  if (!html || html.indexOf("Twin City Small Engine") === -1) return;
+  for (const a of assets) {
+    html = html.split('src="' + a + '"').join('src="' + base + a + '"');
+    html = html.split("src='" + a + "'").join("src='" + base + a + "'");
+    html = html.split('src="/' + a + '"').join('src="' + base + a + '"');
+  }
+  document.open();
+  document.write(html);
+  document.close();
+})();
+</script>
+</body>
 </html>
