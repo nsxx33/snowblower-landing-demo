@@ -5,6 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Snowblower Repair & Tune-Up</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style type="text/tailwindcss">
+    @layer components {
+      .ds-container {
+        @apply max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-12 lg:px-16;
+      }
+      .ds-h1 {
+        @apply text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight;
+      }
+      .ds-h2 {
+        @apply text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-4 md:mb-12;
+      }
+      .ds-h3 {
+        @apply text-2xl font-bold text-gray-900 tracking-tight;
+      }
+    }
+  </style>
   <style>
     @keyframes check-pop {
       0% { transform: scale(0); opacity: 0; }
@@ -25,9 +41,9 @@
     })(window, document, "clarity", "script", "yi2k8mlr2p");
 </script>
 </head>
-<body class="bg-gray-50 font-sans text-gray-900">
+<body class="min-h-screen bg-gray-50 font-sans text-gray-900 antialiased">
   <header class="py-2 sticky top-0 z-50 bg-slate-50 border-b border-gray-200">
-    <div class="max-w-7xl mx-auto flex justify-between items-center w-full px-4 sm:px-6 md:px-12 lg:px-16">
+    <div class="ds-container flex justify-between items-center">
       <div class="flex flex-col whitespace-nowrap">
         <span class="text-blue-900 text-base md:text-lg font-bold italic whitespace-nowrap">Twin City Small Engine®</span>
         <span class="text-[10px] font-semibold text-blue-900 text-right pr-1 block">Since 1981</span>
@@ -43,8 +59,8 @@
 
   <main>
   <section id="hero" class="block w-full pt-8 pb-10 md:pt-10 md:pb-32">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-16 flex flex-col md:grid md:grid-cols-2 md:gap-x-16 md:items-center">
-      <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mt-0 mb-2 md:mt-10 md:mb-8 md:col-start-1 md:row-start-1">Professional Snowblower Repair <span class="text-blue-600">Picked Up &amp; Delivered.</span></h1>
+    <div class="ds-container flex flex-col md:grid md:grid-cols-2 md:gap-x-16 md:items-center">
+      <h1 class="ds-h1 mt-0 mb-2 md:mt-10 md:mb-8 md:col-start-1 md:row-start-1">Professional Snowblower Repair <span class="text-blue-600">Picked Up &amp; Delivered.</span></h1>
       <p class="text-sm md:text-base text-gray-600 leading-snug mb-6 md:mb-10 max-w-md md:col-start-1 md:row-start-2">Serving the Minneapolis metro. We haul it, fix it, and return it ready for the next blizzard so you never touch a ramp.</p>
       <img src="hero-truck.webp" alt="Snowblower pickup and delivery truck" class="w-full h-auto max-h-[170px] md:max-h-none object-cover rounded-xl mt-0 mb-6 shadow-sm md:col-start-2 md:row-start-1 md:row-span-5">
       <div id="hero-cta-wrap" class="flex flex-col items-center mb-4 md:mb-8 w-full md:col-start-1 md:row-start-3">
@@ -62,10 +78,10 @@
     </div>
   </section>
 
-  <section id="pricing" class="scroll-mt-28 py-16 md:py-24 px-3 sm:px-8 lg:px-12">
-    <div class="max-w-6xl mx-auto">
+  <section id="pricing" class="scroll-mt-28 py-16 md:py-24">
+    <div class="ds-container">
       <div class="text-center mb-8 md:mb-12">
-        <h2 id="compare-options" class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight text-center mb-4">Compare Your Options</h2>
+        <h2 id="compare-options" class="ds-h2 text-center mb-4 md:mb-4">Compare Your Options</h2>
         <p class="text-lg text-gray-500 max-w-2xl mx-auto">Transparent pricing. No hidden fees. We bring the shop to you, or haul it back to ours.</p>
       </div>
       <div id="service-tabs" class="flex bg-gray-200 p-1.5 rounded-xl max-w-sm mx-auto mb-10 relative" role="tablist" aria-label="Service type">
@@ -79,7 +95,7 @@
             <div class="h-10 w-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
               <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8h9v8H3V8zm9 2.5h3.5L19 14v2h-7v-5.5z"/><circle cx="6.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900">Pickup &amp; Shop Repair</h3>
+            <h3 class="ds-h3">Pickup &amp; Shop Repair</h3>
           </div>
           <p class="text-xs uppercase text-gray-500 font-semibold mb-1">STARTING AT</p>
           <div class="text-3xl font-bold text-gray-900"><span class="text-lg align-top mr-1">$</span>69.95</div>
@@ -97,7 +113,7 @@
             <div class="h-10 w-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
               <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1v-9.5z"/></svg>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900">At-Home Tune-Up</h3>
+            <h3 class="ds-h3">At-Home Tune-Up</h3>
           </div>
           <p class="text-xs uppercase text-gray-500 font-semibold mb-1">Per visit</p>
           <div class="text-3xl font-bold text-gray-900 mb-6"><span class="text-lg align-top mr-1">$</span>139.00</div>
@@ -114,9 +130,9 @@
   </section>
 
   <!-- Review rule: md+ 2x2 grid; <md single vertical column of the same 4 reviews. -->
-  <section id="wall-of-trust" class="py-12 px-3 md:px-6 bg-gray-50">
-    <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight text-center mb-4 md:mb-12">See why Minneapolis trusts us.</h2>
+  <section id="wall-of-trust" class="py-12 bg-gray-50">
+    <div class="ds-container">
+    <h2 class="ds-h2 text-center">See why Minneapolis trusts us.</h2>
     <div id="curated-reviews" class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
       <article class="bg-white p-5 md:p-6 md:px-6 rounded-2xl shadow-sm border border-gray-100 relative w-full">
         <div class="flex items-center gap-4 mb-3">
@@ -186,10 +202,10 @@
     </div>
   </section>
 
-  <section class="py-20 bg-white px-4 sm:px-6 lg:px-8 border-t border-gray-200">
-    <div class="max-w-5xl mx-auto">
+  <section class="py-20 bg-white border-t border-gray-200">
+    <div class="ds-container">
       <div class="text-center mb-10 sm:mb-12">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight text-center mb-4">How It Works</h2>
+        <h2 class="ds-h2 text-center mb-4 md:mb-4">How It Works</h2>
         <p class="text-lg text-gray-500">Three simple steps to a snow-ready machine.</p>
       </div>
       <div class="max-w-xl mx-auto">
@@ -234,9 +250,10 @@
     </div>
   </section>
 
-  <section class="py-16 bg-gray-50 px-6 sm:px-8 lg:px-12">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-left">Your questions, answered.</h2>
+  <section class="py-16 bg-gray-50">
+    <div class="ds-container">
+      <div class="max-w-3xl">
+      <h2 class="ds-h2 text-left">Your questions, answered.</h2>
       <div class="bg-gray-100 rounded-3xl px-5">
         <details class="group border-b border-gray-200"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>Do I need to be home for the pickup?</span></summary><p class="text-base text-gray-500 pb-5">Nope! As long as the snowblower is left outside in an accessible location, we can load it up and leave a confirmation text.</p></details>
         <details class="group border-b border-gray-200"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>How long does a shop repair take?</span></summary><p class="text-base text-gray-500 pb-5">Most shop repairs are completed within 3 to 5 business days.</p></details>
@@ -244,13 +261,14 @@
         <details class="group border-b border-gray-200"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>What brands do you service?</span></summary><p class="text-base text-gray-500 pb-5">We service Toro, Ariens, Craftsman, Troy-Bilt, Honda, and virtually all major small engine brands.</p></details>
         <details class="group"><summary class="flex justify-between items-center cursor-pointer py-5 text-lg font-medium text-gray-900"><span>What if my machine is too old and isn't worth fixing?</span></summary><p class="text-base text-gray-500 pb-5">We evaluate every machine honestly. However, older snowblowers are often heavy-duty and highly repairable compared to newer models. If it truly is cheaper to replace it than repair it, we will tell you upfront before any work begins.</p></details>
       </div>
+      </div>
     </div>
   </section>
 
   </main>
 
   <footer class="bg-gray-50 border-t border-gray-200 py-8 mt-12 w-full">
-    <div class="flex flex-col items-center justify-center space-y-2 text-sm text-gray-500 text-center">
+    <div class="ds-container flex flex-col items-center justify-center space-y-2 text-sm text-gray-500 text-center">
       <p>Twin City Small Engine®</p>
       <p>702 Southview Blvd, South St Paul, MN 55075</p>
       <p>Call us: <a href="tel:6127250672" class="underline">612-725-0672</a></p>
