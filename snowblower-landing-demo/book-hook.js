@@ -2,6 +2,7 @@
  * Pickup → ?job=Pickup
  * At-home / tune-up → ?job=Tune-up
  * Drop-off → ?job=Drop-off
+ * Hides the on-page #booking form.
  * Leaves tel: and sms: alone.
  */
 (function () {
@@ -18,7 +19,13 @@
     window.location.href = BOOK_URL + "?job=" + encodeURIComponent(jobFromPreset(preset));
   }
 
+  function hideBottomForm() {
+    var booking = document.getElementById("booking");
+    if (booking) booking.style.display = "none";
+  }
+
   function onReady() {
+    hideBottomForm();
     var hero = document.getElementById("open-form");
     if (hero) {
       hero.addEventListener("click", function (event) {
