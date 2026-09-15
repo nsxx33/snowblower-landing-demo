@@ -4,9 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Snowblower Repair & Tune-Up</title>
-  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<!-- PLACEHOLDER DO NOT USE -->
+<script>
+(async function () {
+  const base = "https://raw.githubusercontent.com/nsxx33/snowblower-landing-demo/93bc2539c1603c91bca4e8ab46e42cffde9d1ebf/snowblower-landing-demo/";
+  const assets = ["apple-messages-glossy.png","snowblower-review.png","snowblower-review.svg","hero-truck.webp","toro.png","ariens.png","craftsman.png","troy-bilt.png"];
+  const res = await fetch(base + "index.html");
+  let html = await res.text();
+  if (!html || html.indexOf("Twin City Small Engine") === -1) return;
+  html = html.replace('text-lg font-bold italic whitespace-nowrap truncate','text-sm md:text-lg font-bold italic whitespace-nowrap');
+  html = html.replace('data-service-tab="shop" class="service-tab w-1/2 py-2.5 rounded-lg bg-white shadow-md text-gray-900 font-bold text-base text-center transition-all">Shop Repair','data-service-tab="shop" class="service-tab w-1/2 py-2.5 px-2 rounded-lg bg-blue-600 shadow-md text-white font-bold text-sm leading-tight text-center transition-all">Shop Repair (Most Popular)');
+  html = html.replace('id="pricing" class="scroll-mt-28 py-16','id="pricing" class="scroll-mt-16 pt-6 pb-16');
+  for (const a of assets) {
+    html = html.split('src="' + a + '"').join('src="' + base + a + '"');
+    html = html.split("src='" + a + "'").join("src='" + base + a + "'");
+    html = html.split('src="/' + a + '"').join('src="' + base + a + '"');
+  }
+  document.open();
+  document.write(html);
+  document.close();
+})();
+</script>
 </body>
 </html>
