@@ -52,7 +52,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-16 flex flex-col md:grid md:grid-cols-2 md:gap-x-16 md:items-center">
       <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight text-center mt-0 mb-2 md:mt-10 md:mb-8 md:col-start-1 md:row-start-1">Professional Snowblower Repair <span class="text-blue-600">Picked Up &amp; Delivered.</span></h1>
       <p class="text-sm md:text-base text-gray-600 leading-snug text-center mb-6 md:mb-10 max-w-md mx-auto md:col-start-1 md:row-start-2">Serving the Minneapolis metro. We haul it, fix it, and return it ready for the next blizzard so you never touch a ramp.</p>
-      <img src="hero-truck.webp" alt="Snowblower pickup and delivery truck" class="w-full h-auto max-h-[170px] md:max-h-none object-cover rounded-xl mt-0 mb-6 shadow-sm md:col-start-2 md:row-start-1 md:row-span-5">
+      <img src="https://images.unsplash.com/photo-1682795735660-a789079d5623?auto=format&fit=crop&w=1600&q=80" alt="Clean garage workshop" class="w-full h-auto max-h-[170px] md:max-h-none object-cover rounded-xl mt-0 mb-6 shadow-sm md:col-start-2 md:row-start-1 md:row-span-5">
       <div id="hero-cta-wrap" class="flex flex-col items-center mb-4 md:mb-8 w-full md:col-start-1 md:row-start-3">
         <a href="https://shop-command-phi.vercel.app/book" class="bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-lg py-4 px-8 rounded-xl w-full max-w-sm mx-auto block shadow-md text-center">Schedule My Pickup</a>
       </div>
@@ -74,12 +74,12 @@
         <h2 id="compare-options" class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight text-center mb-4">Compare Your Options</h2>
         <p class="text-lg text-gray-500 max-w-2xl mx-auto">Transparent pricing. No hidden fees. We bring the shop to you, or haul it back to ours.</p>
       </div>
-      <div id="service-tabs" class="flex bg-gray-200 p-1.5 rounded-xl max-w-sm mx-auto mb-10 relative" role="tablist" aria-label="Service type">
+      <div id="service-tabs" class="flex bg-gray-200 p-1.5 rounded-xl max-w-sm mx-auto mb-10 relative md:hidden" role="tablist" aria-label="Service type">
         <button type="button" role="tab" id="tab-shop" aria-controls="panel-shop" aria-selected="true" data-service-tab="shop" class="service-tab w-1/2 py-2.5 rounded-lg bg-white shadow-md text-gray-900 font-bold text-base text-center transition-all">Shop Repair</button>
         <button type="button" role="tab" id="tab-home" aria-controls="panel-home" aria-selected="false" data-service-tab="home" class="service-tab w-1/2 py-2.5 rounded-lg text-gray-500 hover:text-gray-700 font-medium text-base text-center transition-all">At-Home Repair</button>
       </div>
-      <div id="pricing-card-stage" class="grid max-w-xl mx-auto">
-        <div id="panel-shop" role="tabpanel" aria-labelledby="tab-shop" data-pricing-card="shop" class="col-start-1 row-start-1 w-full bg-white rounded-3xl border border-gray-200 shadow-sm p-6 md:p-8 flex flex-col ring-2 ring-blue-600 relative overflow-hidden">
+      <div id="pricing-card-stage" class="grid grid-cols-1 max-w-xl mx-auto md:max-w-none md:grid-cols-2 md:gap-6">
+        <div id="panel-shop" role="tabpanel" aria-labelledby="tab-shop" data-pricing-card="shop" class="max-md:col-start-1 max-md:row-start-1 w-full bg-white rounded-3xl border border-gray-200 shadow-sm p-6 md:p-8 flex flex-col ring-2 ring-blue-600 relative overflow-hidden">
           <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded-bl-lg">Most Popular</div>
           <div class="flex items-center gap-3 border-b border-gray-100 pb-4 mb-4">
             <div class="h-10 w-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
@@ -98,7 +98,7 @@
           </ul>
           <a href="https://shop-command-phi.vercel.app/book" class="w-full bg-blue-600 text-white text-lg font-bold py-3.5 px-6 rounded-xl hover:bg-blue-700 active:scale-95 transition-all mt-auto block text-center">Schedule Pickup</a>
         </div>
-        <div id="panel-home" role="tabpanel" aria-labelledby="tab-home" aria-hidden="true" inert data-pricing-card="home" class="col-start-1 row-start-1 w-full invisible pointer-events-none bg-white border-2 border-gray-100 shadow-xl rounded-2xl p-6 md:p-8 flex flex-col relative overflow-hidden">
+        <div id="panel-home" role="tabpanel" aria-labelledby="tab-home" aria-hidden="true" inert data-pricing-card="home" class="max-md:col-start-1 max-md:row-start-1 w-full invisible pointer-events-none bg-white border-2 border-gray-100 shadow-xl rounded-2xl p-6 md:p-8 flex flex-col relative overflow-hidden">
           <div class="flex items-center gap-3 border-b border-gray-100 pb-4 mb-4">
             <div class="h-10 w-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
               <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1v-9.5z"/></svg>
@@ -270,8 +270,10 @@ document.addEventListener("DOMContentLoaded",()=>{
   let activeTab="shop";
   const serviceTabs=document.querySelectorAll("[data-service-tab]");
   const pricingCards=document.querySelectorAll("[data-pricing-card]");
+  const desktopMq=window.matchMedia("(min-width: 768px)");
   function setServiceTab(key){
     activeTab=key;
+    const desktop=desktopMq.matches;
     serviceTabs.forEach(tab=>{
       const on=tab.getAttribute("data-service-tab")===key;
       tab.setAttribute("aria-selected",on?"true":"false");
@@ -284,7 +286,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       tab.classList.toggle("font-medium",!on);
     });
     pricingCards.forEach(card=>{
-      const on=card.getAttribute("data-pricing-card")===key;
+      const on=desktop||card.getAttribute("data-pricing-card")===key;
       card.classList.toggle("invisible",!on);
       card.classList.toggle("pointer-events-none",!on);
       card.inert=!on;
@@ -295,6 +297,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     e.preventDefault();
     setServiceTab(tab.getAttribute("data-service-tab"));
   }));
+  desktopMq.addEventListener("change",()=>setServiceTab(activeTab));
   setServiceTab(activeTab);
 });
 </script>
