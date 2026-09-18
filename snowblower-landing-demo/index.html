@@ -5,8 +5,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Snowblower Repair & Tune-Up</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes check-pop {
+      0% { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .option-check-pop { animation: check-pop 200ms ease-out forwards; }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yi2k8mlr2p");
+</script>
 </head>
-<body>
-  <p>Restoring full page...</p>
+<body class="bg-gray-50 font-sans text-gray-900">
+  <header class="py-4 sticky top-0 z-50 bg-gray-50/95 backdrop-blur border-b border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 flex justify-between items-center gap-3">
+      <a href="/" class="flex items-center min-w-0" aria-label="Twin City Small Engine - Since 1981">
+        <img src="/images/logo.svg" alt="Twin City Small Engine - Since 1981" width="205" height="40" class="h-8 md:h-10 w-auto max-w-full object-contain object-left" fetchpriority="high" decoding="async">
+      </a>
+      <a href="tel:6127250672" class="hidden md:flex items-center gap-3 group shrink-0" aria-label="Call Twin City Small Engine at (612) 725-0672">
+        <span class="h-10 w-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-100 transition-colors" aria-hidden="true">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </span>
+        <span class="flex flex-col leading-tight">
+          <span class="text-xs font-medium text-gray-500">Call or Text Direct</span>
+          <span class="text-base font-extrabold tracking-tight text-gray-900 group-hover:text-blue-600">(612) 725-0672</span>
+        </span>
+      </a>
+      <a href="tel:6127250672" class="md:hidden shrink-0 bg-green-600 text-white font-semibold py-2 px-4 rounded-full flex items-center gap-2 hover:bg-green-700 active:scale-95 transition-transform duration-100" aria-label="Call Twin City Small Engine at (612) 725-0672">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call Now
+      </a>
+    </div>
+  </header>
+  <main>
+  <section id="hero" class="block w-full pt-8 pb-10 md:pt-10 md:pb-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-16 flex flex-col md:grid md:grid-cols-2 md:gap-x-16 md:items-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight text-center mt-0 mb-2 md:mt-10 md:mb-8 md:col-start-1 md:row-start-1">Professional Snowblower Repair <span class="text-blue-600">Picked Up &amp; Delivered.</span></h1>
+      <p class="text-sm md:text-base text-gray-600 leading-snug text-center mb-6 md:mb-10 max-w-md mx-auto md:col-start-1 md:row-start-2">Serving the Minneapolis metro. <strong>We haul it, fix it, and return it ready</strong> for the next blizzard so you never touch a ramp.</p>
+      <img src="hero-truck.webp" alt="Snowblower being loaded up a ramp into a Twin City Small Engine service van" class="w-full h-auto max-h-[170px] md:max-h-none object-cover rounded-2xl mt-0 mb-6 shadow-2xl border border-gray-200/60 md:col-start-2 md:row-start-1 md:row-span-5">
+      <div id="hero-cta-wrap" class="flex flex-col items-center mb-4 md:mb-8 w-full md:col-start-1 md:row-start-3">
+        <a href="https://book.twincitysmallengines.com/book?job=Pickup" class="bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-lg py-4 px-8 rounded-xl w-full max-w-sm mx-auto block shadow-lg text-center">Schedule My Pickup</a>
+        <div class="mt-2 sm:mt-3 flex items-center justify-center gap-1.5 text-xs font-semibold text-gray-500">
+        <span>Takes under 60 seconds</span>
+        <span>•</span>
+        <span>Secure booking</span>
+      </div>
+      </div>
+    </div>
+  </section>
+  <section id="pricing" class="scroll-mt-28 py-16 md:py-24 px-3 sm:px-8 lg:px-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight text-center mb-4">Compare Your Options</h2>
+        <p class="text-lg text-gray-500 max-w-2xl mx-auto">Transparent pricing. No hidden fees. We bring the shop to you, or haul it back to ours.</p>
+      </div>
+      <div class="grid grid-cols-1 max-w-xl mx-auto md:max-w-none md:grid-cols-2 md:gap-6">
+        <div class="w-full bg-white rounded-3xl border border-gray-200 shadow-sm p-6 md:p-8 flex flex-col ring-2 ring-blue-600 relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded-bl-lg">Most Popular</div>
+          <h3 class="text-2xl font-bold text-gray-900">Pickup &amp; Shop Repair</h3>
+          <p class="text-xs uppercase text-gray-500 font-semibold mb-1 mt-4">STARTING AT</p>
+          <div class="text-3xl font-bold text-gray-900"><span class="text-lg align-top mr-1">$</span>69.95</div>
+          <p class="text-sm text-gray-500 mb-6">Pickup &amp; full diagnostic. Repairs quoted before work begins.</p>
+          <a href="https://book.twincitysmallengines.com/book?job=Pickup" class="w-full bg-blue-600 text-white text-lg font-bold py-3.5 px-6 rounded-xl mt-auto block text-center">Schedule Pickup</a>
+        </div>
+        <div class="w-full bg-white border-2 border-gray-100 shadow-xl rounded-2xl p-6 md:p-8 flex flex-col relative overflow-hidden">
+          <h3 class="text-2xl font-bold text-gray-900">At-Home Tune-Up</h3>
+          <p class="text-xs uppercase text-gray-500 font-semibold mb-1 mt-4">Per visit</p>
+          <div class="text-3xl font-bold text-gray-900 mb-6"><span class="text-lg align-top mr-1">$</span>139.00</div>
+          <a href="https://book.twincitysmallengines.com/book?job=Tune-Up" class="w-full bg-blue-600 text-white text-lg font-bold py-3.5 px-6 rounded-xl mt-auto block text-center">Schedule Tune-Up</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="bg-gray-50 border-t border-gray-200 py-8 mt-12 w-full">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 flex flex-col items-center justify-center space-y-3 text-sm text-gray-500 text-center">
+      <p>702 Southview Blvd, South St Paul, MN 55075</p>
+      <p>Call us: <a href="tel:6127250672" class="underline">612-725-0672</a></p>
+      <p>© 2026 Twin City Small Engine. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
