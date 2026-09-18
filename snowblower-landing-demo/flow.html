@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Choose your plan — Twin City Small Engine</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            apple: { blue: "#0071e3", ink: "#1d1d1f", mute: "#6e6e73", line: "#d2d2d7", sheet: "#f5f5f7" }
+          },
+          fontFamily: {
+            sans: ["-apple-system", "BlinkMacSystemFont", "SF Pro Display", "Segoe UI", "Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body { height: 100%; }
+    body { background: #f5f5f7; color: #1d1d1f; }
+    .screen { display: none; min-height: 100dvh; }
+    .screen.active { display: flex; flex-direction: column; }
+    .card-selected { outline: 2px solid #0071e3; background: #fff; }
+    .sticky-cta { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+    .sheet-enter { animation: up .28s ease; }
+    @keyframes up {
+      from { transform: translateY(18px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .dot { width: 7px; height: 7px; border-radius: 99px; background: #d2d2d7; }
+    .dot.on { background: #1d1d1f; width: 18px; }
+  </style>
+</head>
+<body class="font-sans antialiased">
+  <div id="app" class="mx-auto w-full max-w-md bg-[#f5f5f7] min-h-dvh shadow-xl relative">
+
+    <section id="s-welcome" class="screen active">
+      <header class="px-6 pt-6 flex items-center justify-between">
+        <p class="text-xs tracking-wide text-apple-mute uppercase">Twin City Small Engine</p>
+        <a href="index.html" class="text-sm text-apple-blue">Close</a>
+      </header>
+      <div class="flex-1 px-6 pt-10 pb-8">
+        <p class="text-apple-blue text-sm font-medium mb-3">What’s new this season</p>
+        <h1 class="text-[34px] leading-[1.05] font-semibold tracking-tight mb-4">Your machine starts. We handle the rest.</h1>
+        <p class="text-apple-mute text-[17px] leading-relaxed mb-8">Pickup, shop repair, and scheduled tune-ups for snowblowers and mowers across the Twin Cities. Since 1981.</p>
+        <ul class="space-y-4 text-[16px]">
+          <li class="flex gap-3"><span class="text-emerald-500 mt-0.5">✓</span><span>We haul it both ways. You stay home.</span></li>
+          <li class="flex gap-3"><span class="text-emerald-500 mt-0.5">✓</span><span>Written estimate before any repair starts.</span></li>
+          <li class="flex gap-3"><span class="text-emerald-500 mt-0.5">✓</span><span>Year-round care so it is ready when the first storm hits.</span></li>
+        </ul>
+      </div>
+      <div class="sticky-cta px-6 pt-3 bg-[#f5f5f7]/90 backdrop-blur">
+        <div class="flex justify-center gap-1.5 mb-4"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+        <button onclick="go('offer')" class="w-full h-14 rounded-full bg-apple-blue text-white text-[17px] font-medium active:scale-95 transition-transform">Continue</button>
+        <p class="text-center text-xs text-apple-mute mt-3">Est. 1981 · Angi 4.6 · 413 verified reviews</p>
+      </div>
+    </section>
+
+    <section id="s-offer" class="screen">
+      <header class="px-6 pt-6 flex items-center justify-between">
+        <button onclick="go('welcome')" class="text-apple-blue text-[17px]">‹ Back</button>
+        <button onclick="go('plans')" class="text-apple-blue text-[15px]">See All Plans</button>
+      </header>
+      <div class="flex-1 px-6 pt-8 pb-8 text-center">
+        <p class="text-apple-mute text-sm mb-3">Most popular</p>
+        <h1 class="text-[32px] leading-[1.1] font-semibold tracking-tight mb-3">Pickup &amp; shop repair from $69.95</h1>
+        <p class="text-apple-mute text-[17px] leading-relaxed max-w-sm mx-auto">We pick it up, diagnose it, send a written quote, then bring it back running. Snowblowers first.</p>
+        <div class="mt-10 rounded-3xl bg-white p-6 text-left shadow-sm">
+          <p class="text-xs uppercase tracking-wide text-apple-mute mb-2">After the diagnostic</p>
+          <p class="text-[15px] text-apple-ink">Repair is quoted before work starts. No surprise bench fees. Cancel the visit any time before we roll.</p>
+        </div>
+      </div>
+      <div class="sticky-cta px-6 pt-3 bg-[#f5f5f7]/90 backdrop-blur">
+        <div class="flex justify-center gap-1.5 mb-4"><i class="dot"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+        <button onclick="selectPlan('pickup'); go('included')" class="w-full h-14 rounded-full bg-apple-blue text-white text-[17px] font-medium active:scale-95 transition-transform">Accept Pickup</button>
+        <p class="text-center text-xs text-apple-mute mt-3">No charge today for the quote. Diagnostic starts at $69.95.</p>
+      </div>
+    </section>
+
+    <section id="s-plans" class="screen">
+      <header class="px-6 pt-6 flex items-center justify-between">
+        <button onclick="go('offer')" class="text-apple-blue text-[17px]">‹ Back</button>
+        <p class="text-sm text-apple-mute">Choose your plan</p>
+        <span class="w-10"></span>
+      </header>
+      <div class="flex-1 px-5 pt-6 pb-4 space-y-3">
+        <p class="text-[28px] font-semibold tracking-tight px-1 mb-1">Pick how we take care of it.</p>
+        <p class="text-apple-mute text-[15px] px-1 mb-4">One selected. Change it any time before confirm.</p>
+
+        <button type="button" data-plan="pickup" onclick="selectPlan('pickup')" class="plan-card w-full text-left rounded-3xl bg-white p-5 shadow-sm card-selected">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-[11px] font-semibold tracking-wide text-apple-blue uppercase mb-1">Most Popular</p>
+              <h3 class="text-[20px] font-semibold">Pickup &amp; Shop</h3>
+              <p class="text-apple-mute text-[14px] mt-1">Haul both ways · written quote · return delivery</p>
+            </div>
+            <div class="text-right shrink-0">
+              <p class="text-[22px] font-semibold tracking-tight">$69.95</p>
+              <p class="text-xs text-apple-mute">diagnostic</p>
+            </div>
+          </div>
+        </button>
+
+        <button type="button" data-plan="home" onclick="selectPlan('home')" class="plan-card w-full text-left rounded-3xl bg-white p-5 shadow-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <h3 class="text-[20px] font-semibold">At-Home Tune-Up</h3>
+              <p class="text-apple-mute text-[14px] mt-1">We come to the driveway. One scheduled visit.</p>
+            </div>
+            <div class="text-right shrink-0">
+              <p class="text-[22px] font-semibold tracking-tight">$139</p>
+              <p class="text-xs text-apple-mute">per visit</p>
+            </div>
+          </div>
+        </button>
+
+        <button type="button" data-plan="year" onclick="selectPlan('year')" class="plan-card w-full text-left rounded-3xl bg-white p-5 shadow-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-[11px] font-semibold tracking-wide text-amber-600 uppercase mb-1">Recommended</p>
+              <h3 class="text-[20px] font-semibold">Year-Round Care</h3>
+              <p class="text-apple-mute text-[14px] mt-1">Spring + fall. Snowblower and mower. Guaranteed to start.</p>
+            </div>
+            <div class="text-right shrink-0">
+              <p class="text-[22px] font-semibold tracking-tight">$399</p>
+              <p class="text-xs text-apple-mute">per year</p>
+            </div>
+          </div>
+        </button>
+
+        <div id="year-toggle" class="hidden rounded-2xl bg-white px-4 py-3 flex items-center justify-between">
+          <p class="text-sm">Pay monthly instead</p>
+          <button type="button" id="monthlyBtn" onclick="toggleMonthly()" class="text-sm font-medium text-apple-blue">$39 / month</button>
+        </div>
+      </div>
+      <div class="sticky-cta px-6 pt-3 bg-[#f5f5f7]/90 backdrop-blur">
+        <div class="flex justify-center gap-1.5 mb-4"><i class="dot"></i><i class="dot"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i></div>
+        <button id="plansCta" onclick="go('included')" class="w-full h-14 rounded-full bg-apple-blue text-white text-[17px] font-medium active:scale-95 transition-transform">Continue with Pickup</button>
+        <p class="text-center text-xs text-apple-mute mt-3">You can add 2-year protection on the next screen.</p>
+      </div>
+    </section>
+
+    <section id="s-included" class="screen">
+      <header class="px-6 pt-6 flex items-center justify-between">
+        <button onclick="go('plans')" class="text-apple-blue text-[17px]">‹ Plans</button>
+        <p class="text-sm text-apple-mute">What’s included</p>
+        <span class="w-12"></span>
+      </header>
+      <div class="flex-1 px-6 pt-6 pb-4">
+        <h2 id="incTitle" class="text-[28px] font-semibold tracking-tight mb-2">Pickup &amp; Shop</h2>
+        <p id="incPrice" class="text-apple-mute mb-6">$69.95 diagnostic · repair quoted after inspection</p>
+        <ul id="incList" class="space-y-3 text-[16px] mb-8"></ul>
+
+        <div class="rounded-3xl bg-white p-5 shadow-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-[11px] font-semibold tracking-wide text-apple-blue uppercase mb-1">Add-on</p>
+              <h3 class="text-[18px] font-semibold">Hassle-Free Protection</h3>
+              <p class="text-apple-mute text-[14px] mt-1">Extend coverage to 2 years after the service. Parts and labor on work we performed.</p>
+            </div>
+            <p class="text-[18px] font-semibold shrink-0">+$79</p>
+          </div>
+          <label class="mt-4 flex items-center gap-3 cursor-pointer">
+            <input id="warranty" type="checkbox" class="h-5 w-5 rounded border-apple-line text-apple-blue" onchange="sync()" />
+            <span class="text-sm">Add 2-year protection</span>
+          </label>
+        </div>
+      </div>
+      <div class="sticky-cta px-6 pt-3 bg-[#f5f5f7]/90 backdrop-blur">
+        <div class="flex justify-center gap-1.5 mb-4"><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot on"></i><i class="dot"></i></div>
+        <button id="incCta" onclick="go('details')" class="w-full h-14 rounded-full bg-apple-blue text-white text-[17px] font-medium active:scale-95 transition-transform">Continue</button>
+        <p class="text-center text-xs text-apple-mute mt-3">No card charged until you confirm on the last screen.</p>
+      </div>
+    </section>
+
+    <section id="s-details" class="screen">
+      <header class="px-6 pt-6 flex items-center justify-between">
+        <button onclick="go('included')" class="text-apple-blue text-[17px]">‹ Back</button>
+        <p class="text-sm text-apple-mute">Your details</p>
+        <span class="w-10"></span>
+      </header>
+      <form class="flex-1 px-6 pt-6 pb-4 space-y-4" onsubmit="event.preventDefault(); go('confirm')">
+        <h2 class="text-[28px] font-semibold tracking-tight">Four fields. Then you’re in.</h2>
+        <label class="block">
+          <span class="text-xs text-apple-mute">Name</span>
+          <input id="f-name" required autocomplete="name" class="mt-1 w-full h-12 rounded-xl bg-white px-4 text-[16px] outline-none ring-1 ring-apple-line focus:ring-2 focus:ring-apple-blue" />
+        </label>
+        <label class="block">
+          <span class="text-xs text-apple-mute">Mobile phone</span>
+          <input id="f-phone" required type="tel" autocomplete="tel" class="mt-1 w-full h-12 rounded-xl bg-white px-4 text-[16px] outline-none ring-1 ring-apple-line focus:ring-2 focus:ring-apple-blue" />
+        </label>
+        <label class="block">
+          <span class="text-xs text-apple-mute">Pickup address</span>
+          <input id="f-addr" required autocomplete="street-address" class="mt-1 w-full h-12 rounded-xl bg-white px-4 text-[16px] outline-none ring-1 ring-apple-line focus:ring-2 focus:ring-apple-blue" />
+        </label>
+        <label class="block">
+          <span class="text-xs text-apple-mute">Machine</span>
+          <select id="f-machine" class="mt-1 w-full h-12 rounded-xl bg-white px-4 text-[16px] outline-none ring-1 ring-apple-line focus:ring-2 focus:ring-apple-blue">
+            <option>Snowblower</option>
+            <option>Walk-behind mower</option>
+            <option>Riding mower</option>
+            <option>Snowblower + mower</option>
+          </select>
+        </label>
+        <button type="submit" class="w-full h-14 rounded-full bg-apple-blue text-white text-[17px] font-medium active:scale-95 transition-transform">Review order</button>
+      </form>
+    </section>
+
+    <section id="s-confirm" class="screen">
+      <header class="px-6 pt-6 flex items-center justify-between">
+        <button onclick="go('details')" class="text-apple-blue text-[17px]">‹ Back</button>
+        <p class="text-sm text-apple-mute">Confirm</p>
+        <span class="w-10"></span>
+      </header>
+      <div class="flex-1 px-6 pt-6 pb-4">
+        <div class="sheet-enter rounded-3xl bg-white shadow-sm overflow-hidden">
+          <div class="px-5 py-4 border-b border-apple-line/70">
+            <p class="text-xs text-apple-mute">Twin City Small Engine</p>
+            <h3 id="c-plan" class="text-[20px] font-semibold">Pickup &amp; Shop</h3>
+          </div>
+          <div class="px-5 py-4 space-y-3 text-[15px]">
+            <div class="flex justify-between"><span class="text-apple-mute">Due today</span><span id="c-today" class="font-medium">$0.00</span></div>
+            <div class="flex justify-between"><span class="text-apple-mute">After inspection / first visit</span><span id="c-later" class="font-medium">$69.95</span></div>
+            <div class="flex justify-between"><span class="text-apple-mute">Protection</span><span id="c-warr">Not added</span></div>
+            <div class="flex justify-between"><span class="text-apple-mute">Machine</span><span id="c-machine">Snowblower</span></div>
+          </div>
+          <div class="px-5 py-4 bg-apple-sheet text-[13px] text-apple-mute leading-relaxed">
+            Subscriptions and scheduled care renew unless you cancel at least 24 hours before the next visit. Cancel by texting or calling 612-725-0672. Prototype — no card will be charged.
+          </div>
+        </div>
+        <p id="c-who" class="text-sm text-apple-mute mt-4 px-1"></p>
+      </div>
+      <div class="sticky-cta px-6 pt-3 bg-[#f5f5f7]/90 backdrop-blur">
+        <div class="flex justify-center gap-1.5 mb-4"><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot on"></i></div>
+        <button onclick="finish()" class="w-full h-14 rounded-full bg-apple-blue text-white text-[17px] font-medium active:scale-95 transition-transform">Confirm &amp; text me</button>
+        <p class="text-center text-xs text-apple-mute mt-3">We’ll text a pickup window. No surprise charges.</p>
+      </div>
+    </section>
+
+    <section id="s-done" class="screen">
+      <div class="flex-1 flex flex-col items-center justify-center px-8 text-center">
+        <div class="h-16 w-16 rounded-full bg-emerald-500 text-white text-3xl flex items-center justify-center mb-6">✓</div>
+        <h1 class="text-[32px] font-semibold tracking-tight mb-3">You’re on the list.</h1>
+        <p id="doneCopy" class="text-apple-mute text-[17px] leading-relaxed">We’ll text your pickup window. That’s the whole form.</p>
+      </div>
+      <div class="sticky-cta px-6">
+        <a href="index.html" class="block w-full h-14 rounded-full bg-apple-blue text-white text-[17px] font-medium text-center leading-[56px]">Back to the site</a>
+        <p class="text-center text-xs text-apple-mute mt-3">Or call 612-725-0672</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const PLANS = {
+      pickup: {
+        name: "Pickup & Shop",
+        priceLabel: "$69.95 diagnostic",
+        today: 0,
+        later: 69.95,
+        laterLabel: "$69.95 after inspection",
+        cta: "Continue with Pickup",
+        accept: "Accept Pickup",
+        items: [
+          "We pick it up from the driveway",
+          "Full diagnostic and teardown",
+          "Written estimate before repair",
+          "Return delivery when it’s ready"
+        ]
+      },
+      home: {
+        name: "At-Home Tune-Up",
+        priceLabel: "$139 per visit",
+        today: 139,
+        later: 0,
+        laterLabel: "Nothing later unless you add care",
+        cta: "Continue with Tune-Up",
+        accept: "Book Tune-Up",
+        items: [
+          "Tech comes to your driveway",
+          "Multi-point inspection and tune-up",
+          "Scheduled spring or fall window",
+          "No loading it in the truck yourself"
+        ]
+      },
+      year: {
+        name: "Year-Round Care",
+        priceLabel: "$399 per year",
+        today: 399,
+        later: 0,
+        laterLabel: "Renews next year unless you cancel",
+        cta: "Start Year-Round Care",
+        accept: "Start Care",
+        items: [
+          "Spring service for the mower",
+          "Fall winterize for the snowblower",
+          "Guaranteed to start after our visit",
+          "Priority scheduling over one-off jobs"
+        ]
+      }
+    };
+
+    const state = { plan: "pickup", monthly: false, warranty: false };
+
+    function selectPlan(id) {
+      state.plan = id;
+      if (id === "year") state.monthly = state.monthly;
+      else state.monthly = false;
+      document.querySelectorAll(".plan-card").forEach((el) => {
+        el.classList.toggle("card-selected", el.dataset.plan === id);
+      });
+      document.getElementById("year-toggle").classList.toggle("hidden", id !== "year");
+      sync();
+    }
+
+    function toggleMonthly() {
+      state.monthly = !state.monthly;
+      const p = PLANS.year;
+      if (state.monthly) {
+        p.priceLabel = "$39 per month";
+        p.today = 39;
+        p.laterLabel = "Then $39 each month. Cancel any time.";
+      } else {
+        p.priceLabel = "$399 per year";
+        p.today = 399;
+        p.laterLabel = "Renews next year unless you cancel";
+      }
+      document.getElementById("monthlyBtn").textContent = state.monthly ? "Switch to $399 / year" : "$39 / month";
+      document.querySelector('[data-plan="year"] .text-\\[22px\\]').textContent = state.monthly ? "$39" : "$399";
+      document.querySelector('[data-plan="year"] .text-xs').textContent = state.monthly ? "per month" : "per year";
+      sync();
+    }
+
+    function money(n) {
+      return n.toLocaleString("en-US", { style: "currency", currency: "USD" });
+    }
+
+    function sync() {
+      state.warranty = document.getElementById("warranty")?.checked || false;
+      const p = PLANS[state.plan];
+      const plansCta = document.getElementById("plansCta");
+      if (plansCta) plansCta.textContent = p.cta;
+      const incTitle = document.getElementById("incTitle");
+      const incPrice = document.getElementById("incPrice");
+      const incList = document.getElementById("incList");
+      if (incTitle) incTitle.textContent = p.name;
+      if (incPrice) incPrice.textContent = p.priceLabel;
+      if (incList) incList.innerHTML = p.items.map((t) => `<li class="flex gap-3"><span class="text-emerald-500">✓</span><span>${t}</span></li>`).join("");
+      const today = p.today + (state.warranty ? 79 : 0);
+      const cPlan = document.getElementById("c-plan");
+      const cToday = document.getElementById("c-today");
+      const cLater = document.getElementById("c-later");
+      const cWarr = document.getElementById("c-warr");
+      if (cPlan) cPlan.textContent = p.name;
+      if (cToday) cToday.textContent = money(today);
+      if (cLater) cLater.textContent = p.later ? money(p.later) : p.laterLabel;
+      if (cWarr) cWarr.textContent = state.warranty ? "2-year · $79" : "Not added";
+    }
+
+    function go(id) {
+      sync();
+      if (id === "confirm") {
+        const machine = document.getElementById("f-machine")?.value || "Snowblower";
+        const name = document.getElementById("f-name")?.value || "";
+        const addr = document.getElementById("f-addr")?.value || "";
+        const cm = document.getElementById("c-machine");
+        const cw = document.getElementById("c-who");
+        if (cm) cm.textContent = machine;
+        if (cw) cw.textContent = [name, addr].filter(Boolean).join(" · ");
+      }
+      document.querySelectorAll(".screen").forEach((s) => s.classList.remove("active"));
+      document.getElementById("s-" + id).classList.add("active");
+      window.scrollTo(0, 0);
+    }
+
+    function finish() {
+      const name = document.getElementById("f-name").value || "You";
+      const machine = document.getElementById("f-machine").value;
+      document.getElementById("doneCopy").textContent =
+        "Hi " + name.split(" ")[0] + " — " + PLANS[state.plan].name + " for your " + machine.toLowerCase() + ". We’ll text the window to the number you gave.";
+      go("done");
+    }
+
+    selectPlan("pickup");
+  </script>
+</body>
+</html>
