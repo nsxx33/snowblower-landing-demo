@@ -3,388 +3,494 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Choose your plan — Twin City Small Engine</title>
+  <title>Apple-style plan flow — Twin City Small Engine</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            apple: { blue: "#0071e3", ink: "#1d1d1f", mute: "#6e6e73", line: "#d2d2d7", sheet: "#f5f5f7" }
-          },
-          fontFamily: {
-            sans: ["-apple-system", "BlinkMacSystemFont", "SF Pro Display", "Segoe UI", "Inter", "sans-serif"]
-          }
-        }
+  <style>
+    :root {
+      --blue: #0071e3;
+      --ink: #1d1d1f;
+      --mute: #6e6e73;
+      --line: #d2d2d7;
+      --sheet: #f5f5f7;
+    }
+    * { -webkit-tap-highlight-color: transparent; }
+    html, body { height: 100%; margin: 0; background: #000; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Inter, sans-serif;
+      color: var(--ink);
+    }
+    .phone {
+      width: 100%;
+      max-width: 390px;
+      min-height: 100dvh;
+      margin: 0 auto;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 480px) {
+      body { display: flex; align-items: center; justify-content: center; padding: 24px 0; }
+      .phone {
+        min-height: 844px;
+        height: 844px;
+        border-radius: 44px;
+        border: 8px solid #1c1c1e;
+        box-shadow: 0 40px 80px rgba(0,0,0,.55);
       }
     }
-  </script>
-  <style>
-    html, body { height: 100%; }
-    body { background: #f5f5f7; color: #1d1d1f; }
-    .screen { display: none; min-height: 100dvh; }
-    .screen.active { display: flex; flex-direction: column; }
-    .card-selected { outline: 2px solid #0071e3; background: #fff; }
-    .sticky-cta { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
-    .sheet-enter { animation: up .28s ease; }
-    @keyframes up {
-      from { transform: translateY(18px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    .screen { display: none; position: absolute; inset: 0; flex-direction: column; overflow: hidden; }
+    .screen.on { display: flex; }
+    .scroll { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 20px 8px;
+      font-size: 15px; font-weight: 400;
     }
-    .dot { width: 7px; height: 7px; border-radius: 99px; background: #d2d2d7; }
-    .dot.on { background: #1d1d1f; width: 18px; }
+    .cta-wrap {
+      padding: 12px 20px calc(18px + env(safe-area-inset-bottom));
+      background: linear-gradient(to top, #fff 70%, rgba(255,255,255,0));
+    }
+    .cta-wrap.dark {
+      background: linear-gradient(to top, #000 70%, rgba(0,0,0,0));
+    }
+    .btn {
+      width: 100%; height: 50px; border: 0; border-radius: 980px;
+      background: var(--blue); color: #fff; font-size: 17px; font-weight: 600;
+      letter-spacing: -.01em; cursor: pointer;
+    }
+    .btn:active { transform: scale(.98); opacity: .92; }
+    .btn.white { background: #fff; color: #000; }
+    .link { background: none; border: 0; color: var(--blue); font-size: 17px; cursor: pointer; padding: 0; }
+    .legal { margin: 10px 0 0; text-align: center; font-size: 11px; line-height: 1.35; color: var(--mute); }
+    .radio {
+      width: 22px; height: 22px; border-radius: 99px; border: 1.5px solid #c7c7cc;
+      display: grid; place-items: center; flex-shrink: 0; background: #fff;
+    }
+    .radio.on { border-color: var(--blue); background: var(--blue); }
+    .radio.on::after {
+      content: ""; width: 6px; height: 10px; border: 2px solid #fff;
+      border-top: 0; border-left: 0; transform: rotate(45deg) translate(-1px, -1px);
+    }
+    .icon {
+      width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+      color: #fff; flex-shrink: 0;
+    }
+    .icon svg { width: 22px; height: 22px; }
+    .tile {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: .5px solid rgba(255,255,255,.12);
+    }
+    .plan {
+      width: 100%; text-align: left; background: #fff; border: 0;
+      border-radius: 16px; padding: 16px; cursor: pointer;
+      box-shadow: 0 0 0 .5px rgba(0,0,0,.04);
+    }
+    .plan.sel { box-shadow: 0 0 0 2px var(--blue); }
+    .pills { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 16px; scrollbar-width: none; }
+    .pills::-webkit-scrollbar { display: none; }
+    .inc-card {
+      min-width: 248px; background: #fff; border-radius: 20px; padding: 20px;
+      box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    }
+    .sheet-bg {
+      position: absolute; inset: 0; background: rgba(0,0,0,.4);
+      display: none; align-items: flex-end;
+    }
+    .sheet-bg.on { display: flex; }
+    .sheet {
+      width: 100%; background: #fff; border-radius: 20px 20px 0 0;
+      padding: 8px 20px calc(18px + env(safe-area-inset-bottom));
+      animation: up .32s cubic-bezier(.2,.8,.2,1);
+    }
+    @keyframes up { from { transform: translateY(40%); } to { transform: translateY(0); } }
+    .grab { width: 36px; height: 5px; border-radius: 99px; background: #d1d1d6; margin: 6px auto 14px; }
+    .row { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; font-size: 15px; }
+    .row + .row { border-top: .5px solid var(--line); }
+    .field {
+      width: 100%; height: 44px; border: 0; background: transparent;
+      font-size: 17px; outline: none; color: var(--ink);
+    }
+    .group { background: #fff; border-radius: 12px; overflow: hidden; }
+    .group label {
+      display: block; padding: 6px 16px 2px; border-top: .5px solid var(--line);
+    }
+    .group label:first-child { border-top: 0; }
+    .status {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 22px 0; color: #fff; font-size: 12px; font-weight: 600;
+    }
+    .island { width: 120px; height: 34px; background: #000; border-radius: 20px; margin: 8px auto 0; }
   </style>
 </head>
-<body class="font-sans antialiased">
-  <div id="app" class="mx-auto w-full max-w-md bg-[#f5f5f7] min-h-dvh shadow-xl relative">
+<body>
+  <div class="phone" id="phone">
+    <div class="island" id="island"></div>
 
-    <section id="s-welcome" class="screen active">
-      <header class="px-6 pt-6 flex items-center justify-between">
-        <p class="text-xs tracking-wide text-apple-mute uppercase">Twin City Small Engine</p>
-        <a href="index.html" class="text-sm text-apple-blue">Close</a>
-      </header>
-      <div class="flex-1 px-6 pt-10 pb-8">
-        <p class="text-apple-blue text-sm font-medium mb-3">What’s new this season</p>
-        <h1 class="text-[34px] leading-[1.05] font-semibold tracking-tight mb-4">Your machine starts. We handle the rest.</h1>
-        <p class="text-apple-mute text-[17px] leading-relaxed mb-8">Pickup, shop repair, and scheduled tune-ups for snowblowers and mowers across the Twin Cities. Since 1981.</p>
-        <ul class="space-y-4 text-[16px]">
-          <li class="flex gap-3"><span class="text-emerald-500 mt-0.5">✓</span><span>We haul it both ways. You stay home.</span></li>
-          <li class="flex gap-3"><span class="text-emerald-500 mt-0.5">✓</span><span>Written estimate before any repair starts.</span></li>
-          <li class="flex gap-3"><span class="text-emerald-500 mt-0.5">✓</span><span>Year-round care so it is ready when the first storm hits.</span></li>
-        </ul>
+    <!-- A. WHAT'S NEW — Apple Music dark screen -->
+    <section id="welcome" class="screen on" style="background:#000;color:#fff">
+      <div class="status"><span>9:41</span><span>5G ●●●</span></div>
+      <div class="bar" style="color:#fff">
+        <span style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#86868b">Twin City</span>
+        <button class="link" onclick="location.href='index.html'">Close</button>
       </div>
-      <div class="sticky-cta px-6 pt-3 bg-[#f5f5f7]/90 backdrop-blur">
-        <div class="flex justify-center gap-1.5 mb-4"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
-        <button onclick="go('offer')" class="w-full h-14 rounded-full bg-apple-blue text-white text-[17px] font-medium active:scale-95 transition-transform">Continue</button>
-        <p class="text-center text-xs text-apple-mute mt-3">Est. 1981 · Angi 4.6 · 413 verified reviews</p>
-      </div>
-    </section>
-
-    <section id="s-offer" class="screen">
-      <header class="px-6 pt-6 flex items-center justify-between">
-        <button onclick="go('welcome')" class="text-apple-blue text-[17px]">‹ Back</button>
-        <button onclick="go('plans')" class="text-apple-blue text-[15px]">See All Plans</button>
-      </header>
-      <div class="flex-1 px-6 pt-8 pb-8 text-center">
-        <p class="text-apple-mute text-sm mb-3">Most popular</p>
-        <h1 class="text-[32px] leading-[1.1] font-semibold tracking-tight mb-3">Pickup &amp; shop repair from $69.95</h1>
-        <p class="text-apple-mute text-[17px] leading-relaxed max-w-sm mx-auto">We pick it up, diagnose it, send a written quote, then bring it back running. Snowblowers first.</p>
-        <div class="mt-10 rounded-3xl bg-white p-6 text-left shadow-sm">
-          <p class="text-xs uppercase tracking-wide text-apple-mute mb-2">After the diagnostic</p>
-          <p class="text-[15px] text-apple-ink">Repair is quoted before work starts. No surprise bench fees. Cancel the visit any time before we roll.</p>
+      <div class="scroll" style="padding:8px 22px 24px">
+        <p style="color:#2997ff;font-size:13px;font-weight:600;margin:8px 0 6px">What’s New This Season</p>
+        <h1 style="font-size:34px;line-height:1.05;font-weight:700;letter-spacing:-.03em;margin:0 0 22px">Start it. We take it from there.</h1>
+        <div class="tile">
+          <div class="icon" style="background:#0071e3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h9v8H3V8zm9 2.5h3.5L19 14v2h-7v-5.5z"/><circle cx="6.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>
+          </div>
+          <div>
+            <p style="margin:0;font-size:17px;font-weight:600">Pickup, both ways</p>
+            <p style="margin:4px 0 0;font-size:14px;color:#a1a1a6">We haul the snowblower to the shop and bring it home running.</p>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="icon" style="background:#bf5af2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          </div>
+          <div>
+            <p style="margin:0;font-size:17px;font-weight:600">Written estimate first</p>
+            <p style="margin:4px 0 0;font-size:14px;color:#a1a1a6">Nothing starts until you approve the quote.</p>
+          </div>
+        </div>
+        <div class="tile" style="border-bottom:0">
+          <div class="icon" style="background:#30d158">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <div>
+            <p style="margin:0;font-size:17px;font-weight:600">Guaranteed to start</p>
+            <p style="margin:4px 0 0;font-size:14px;color:#a1a1a6">Year-Round Care winterizes and summerizes so the first pull works.</p>
+          </div>
         </div>
       </div>
-      <div class="sticky-cta px-6 pt-3 bg-[#f5f5f7]/90 backdrop-blur">
-        <div class="flex justify-center gap-1.5 mb-4"><i class="dot"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
-        <button onclick="selectPlan('pickup'); go('included')" class="w-full h-14 rounded-full bg-apple-blue text-white text-[17px] font-medium active:scale-95 transition-transform">Accept Pickup</button>
-        <p class="text-center text-xs text-apple-mute mt-3">No charge today for the quote. Diagnostic starts at $69.95.</p>
+      <div class="cta-wrap dark">
+        <button class="btn white" onclick="show('offer')">Continue</button>
       </div>
     </section>
 
-    <section id="s-plans" class="screen">
-      <header class="px-6 pt-6 flex items-center justify-between">
-        <button onclick="go('offer')" class="text-apple-blue text-[17px]">‹ Back</button>
-        <p class="text-sm text-apple-mute">Choose your plan</p>
-        <span class="w-10"></span>
-      </header>
-      <div class="flex-1 px-5 pt-6 pb-4 space-y-3">
-        <p class="text-[28px] font-semibold tracking-tight px-1 mb-1">Pick how we take care of it.</p>
-        <p class="text-apple-mute text-[15px] px-1 mb-4">One selected. Change it any time before confirm.</p>
+    <!-- B. GIFT OFFER — 3 months free clone -->
+    <section id="offer" class="screen" style="background:#fff">
+      <div class="status" style="color:#000"><span>9:41</span><span>5G ●●●</span></div>
+      <div class="bar">
+        <button class="link" onclick="show('welcome')">Cancel</button>
+        <button class="link" onclick="show('plans')">See All Plans</button>
+      </div>
+      <div class="scroll" style="padding:28px 24px 16px;text-align:center">
+        <div class="icon" style="width:72px;height:72px;border-radius:18px;margin:0 auto 22px;background:linear-gradient(180deg,#5ac8fa,#007aff)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" width="34" height="34"><path d="M3 8h9v8H3V8zm9 2.5h3.5L19 14v2h-7v-5.5z"/><circle cx="6.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>
+        </div>
+        <h1 style="font-size:34px;line-height:1.08;font-weight:700;letter-spacing:-.035em;margin:0 0 12px">Get pickup &amp; shop repair from $69.95</h1>
+        <p style="margin:0 auto;max-width:300px;font-size:17px;line-height:1.4;color:var(--mute)">We pick it up, diagnose it, and bring it back. Then $0 until you approve the repair.</p>
+      </div>
+      <div class="cta-wrap">
+        <button class="btn" onclick="pick('pickup'); show('included')">Accept Pickup</button>
+        <p class="legal">No commitment to the repair until you see the written estimate. Cancel the visit any time before we roll.</p>
+      </div>
+    </section>
 
-        <button type="button" data-plan="pickup" onclick="selectPlan('pickup')" class="plan-card w-full text-left rounded-3xl bg-white p-5 shadow-sm card-selected">
-          <div class="flex items-start justify-between gap-3">
-            <div>
-              <p class="text-[11px] font-semibold tracking-wide text-apple-blue uppercase mb-1">Most Popular</p>
-              <h3 class="text-[20px] font-semibold">Pickup &amp; Shop</h3>
-              <p class="text-apple-mute text-[14px] mt-1">Haul both ways · written quote · return delivery</p>
+    <!-- C. CHOOSE YOUR PLAN — Music + One clone -->
+    <section id="plans" class="screen" style="background:var(--sheet)">
+      <div class="status" style="color:#000"><span>9:41</span><span>5G ●●●</span></div>
+      <div class="bar">
+        <button class="link" onclick="show('offer')">‹ Plans</button>
+        <span style="font-size:13px;color:var(--mute)">Choose Your Plan</span>
+        <span style="width:48px"></span>
+      </div>
+      <div class="scroll" style="padding:8px 16px 24px">
+        <h1 style="font-size:28px;letter-spacing:-.03em;font-weight:700;margin:6px 4px 16px">Choose Your Plan</h1>
+
+        <button class="plan sel" id="card-pickup" onclick="pick('pickup')">
+          <div style="display:flex;align-items:flex-start;gap:12px">
+            <span class="radio on" id="r-pickup"></span>
+            <div style="flex:1">
+              <p style="margin:0;font-size:16px;font-weight:600">Pickup &amp; Shop</p>
+              <p style="margin:2px 0 0;font-size:13px;color:var(--mute)">Most Popular · haul both ways</p>
             </div>
-            <div class="text-right shrink-0">
-              <p class="text-[22px] font-semibold tracking-tight">$69.95</p>
-              <p class="text-xs text-apple-mute">diagnostic</p>
+            <div style="text-align:right">
+              <p style="margin:0;font-size:16px;font-weight:600">$69.95</p>
+              <p style="margin:2px 0 0;font-size:12px;color:var(--mute)">diagnostic</p>
             </div>
           </div>
         </button>
 
-        <button type="button" data-plan="home" onclick="selectPlan('home')" class="plan-card w-full text-left rounded-3xl bg-white p-5 shadow-sm">
-          <div class="flex items-start justify-between gap-3">
-            <div>
-              <h3 class="text-[20px] font-semibold">At-Home Tune-Up</h3>
-              <p class="text-apple-mute text-[14px] mt-1">We come to the driveway. One scheduled visit.</p>
+        <button class="plan" id="card-home" onclick="pick('home')" style="margin-top:10px">
+          <div style="display:flex;align-items:flex-start;gap:12px">
+            <span class="radio" id="r-home"></span>
+            <div style="flex:1">
+              <p style="margin:0;font-size:16px;font-weight:600">At-Home Tune-Up</p>
+              <p style="margin:2px 0 0;font-size:13px;color:var(--mute)">We come to the driveway</p>
             </div>
-            <div class="text-right shrink-0">
-              <p class="text-[22px] font-semibold tracking-tight">$139</p>
-              <p class="text-xs text-apple-mute">per visit</p>
-            </div>
-          </div>
-        </button>
-
-        <button type="button" data-plan="year" onclick="selectPlan('year')" class="plan-card w-full text-left rounded-3xl bg-white p-5 shadow-sm">
-          <div class="flex items-start justify-between gap-3">
-            <div>
-              <p class="text-[11px] font-semibold tracking-wide text-amber-600 uppercase mb-1">Recommended</p>
-              <h3 class="text-[20px] font-semibold">Year-Round Care</h3>
-              <p class="text-apple-mute text-[14px] mt-1">Spring + fall. Snowblower and mower. Guaranteed to start.</p>
-            </div>
-            <div class="text-right shrink-0">
-              <p class="text-[22px] font-semibold tracking-tight">$399</p>
-              <p class="text-xs text-apple-mute">per year</p>
+            <div style="text-align:right">
+              <p style="margin:0;font-size:16px;font-weight:600">$139</p>
+              <p style="margin:2px 0 0;font-size:12px;color:var(--mute)">per visit</p>
             </div>
           </div>
         </button>
 
-        <div id="year-toggle" class="hidden rounded-2xl bg-white px-4 py-3 flex items-center justify-between">
-          <p class="text-sm">Pay monthly instead</p>
-          <button type="button" id="monthlyBtn" onclick="toggleMonthly()" class="text-sm font-medium text-apple-blue">$39 / month</button>
+        <p style="margin:22px 4px 10px;font-size:13px;font-weight:600;color:var(--mute);letter-spacing:.02em;text-transform:uppercase">Bundle &amp; save</p>
+
+        <button class="plan" id="card-year" onclick="pick('year')">
+          <div style="display:flex;align-items:flex-start;gap:12px">
+            <span class="radio" id="r-year"></span>
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+                <span style="font-size:11px;font-weight:700;color:#fff;background:#0071e3;border-radius:8px;padding:2px 7px">Recommended</span>
+                <span style="font-size:12px;color:#248a3d;font-weight:600">Save $79 / yr</span>
+              </div>
+              <p style="margin:0;font-size:16px;font-weight:600">Year-Round Care</p>
+              <p style="margin:3px 0 10px;font-size:13px;color:var(--mute)">Spring + fall. Snowblower and mower.</p>
+              <div style="display:flex;gap:6px">
+                <span class="icon" style="width:28px;height:28px;border-radius:7px;background:#007aff" title="Snowblower">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 3v3M12 18v3M4.2 6.2l2.1 2.1M17.7 15.7l2.1 2.1M3 12h3M18 12h3M4.2 17.8l2.1-2.1M17.7 8.3l2.1-2.1"/></svg>
+                </span>
+                <span class="icon" style="width:28px;height:28px;border-radius:7px;background:#30d158">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M4 20h16M7 20V8l5-4 5 4v12"/></svg>
+                </span>
+                <span class="icon" style="width:28px;height:28px;border-radius:7px;background:#ff9f0a">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="icon" style="width:28px;height:28px;border-radius:7px;background:#bf5af2">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 8v4l3 2M12 21a9 9 0 110-18 9 9 0 010 18z"/></svg>
+                </span>
+              </div>
+              <p style="margin:10px 0 0;font-size:12px;color:var(--mute)">4 services · guaranteed to start</p>
+            </div>
+            <div style="text-align:right">
+              <p style="margin:0;font-size:16px;font-weight:600" id="yearPrice">$399</p>
+              <p style="margin:2px 0 0;font-size:12px;color:var(--mute)" id="yearCadence">per year</p>
+            </div>
+          </div>
+        </button>
+
+        <div id="yearToggle" style="display:none;margin-top:10px;background:#fff;border-radius:16px;padding:12px 16px">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span style="font-size:15px">Pay monthly</span>
+            <button class="link" id="monthBtn" onclick="toggleMonth()" style="font-size:15px">$39 / mo</button>
+          </div>
         </div>
       </div>
-      <div class="sticky-cta px-6 pt-3 bg-[#f5f5f7]/90 backdrop-blur">
-        <div class="flex justify-center gap-1.5 mb-4"><i class="dot"></i><i class="dot"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i></div>
-        <button id="plansCta" onclick="go('included')" class="w-full h-14 rounded-full bg-apple-blue text-white text-[17px] font-medium active:scale-95 transition-transform">Continue with Pickup</button>
-        <p class="text-center text-xs text-apple-mute mt-3">You can add 2-year protection on the next screen.</p>
+      <div class="cta-wrap" style="background:linear-gradient(to top, #f5f5f7 70%, rgba(245,245,247,0))">
+        <button class="btn" id="plansCta" onclick="show('included')">Accept Pickup</button>
+        <p class="legal">Auto-renews only on Year-Round Care. Cancel by texting 612-725-0672 at least 24 hours before the next visit.</p>
       </div>
     </section>
 
-    <section id="s-included" class="screen">
-      <header class="px-6 pt-6 flex items-center justify-between">
-        <button onclick="go('plans')" class="text-apple-blue text-[17px]">‹ Plans</button>
-        <p class="text-sm text-apple-mute">What’s included</p>
-        <span class="w-12"></span>
-      </header>
-      <div class="flex-1 px-6 pt-6 pb-4">
-        <h2 id="incTitle" class="text-[28px] font-semibold tracking-tight mb-2">Pickup &amp; Shop</h2>
-        <p id="incPrice" class="text-apple-mute mb-6">$69.95 diagnostic · repair quoted after inspection</p>
-        <ul id="incList" class="space-y-3 text-[16px] mb-8"></ul>
-
-        <div class="rounded-3xl bg-white p-5 shadow-sm">
-          <div class="flex items-start justify-between gap-3">
+    <!-- D. WHAT'S INCLUDED — carousel -->
+    <section id="included" class="screen" style="background:var(--sheet)">
+      <div class="status" style="color:#000"><span>9:41</span><span>5G ●●●</span></div>
+      <div class="bar">
+        <button class="link" onclick="show('plans')">‹ Plan</button>
+        <span style="font-size:13px;color:var(--mute)">What’s Included</span>
+        <span style="width:48px"></span>
+      </div>
+      <div class="scroll" style="padding:4px 0 16px">
+        <h1 id="incTitle" style="font-size:28px;letter-spacing:-.03em;font-weight:700;margin:4px 20px 6px">Pickup &amp; Shop</h1>
+        <p id="incSub" style="margin:0 20px 16px;color:var(--mute);font-size:15px">$69.95 diagnostic</p>
+        <div class="pills" id="incPills" style="padding-left:16px;padding-right:16px"></div>
+        <div style="margin:8px 16px 0;background:#fff;border-radius:16px;padding:16px">
+          <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
             <div>
-              <p class="text-[11px] font-semibold tracking-wide text-apple-blue uppercase mb-1">Add-on</p>
-              <h3 class="text-[18px] font-semibold">Hassle-Free Protection</h3>
-              <p class="text-apple-mute text-[14px] mt-1">Extend coverage to 2 years after the service. Parts and labor on work we performed.</p>
+              <p style="margin:0;font-size:12px;font-weight:600;color:var(--blue)">ADD AFTER SERVICE</p>
+              <p style="margin:4px 0 0;font-size:17px;font-weight:600">Hassle-Free Protection</p>
+              <p style="margin:4px 0 0;font-size:13px;color:var(--mute)">2-year parts &amp; labor on work we performed.</p>
             </div>
-            <p class="text-[18px] font-semibold shrink-0">+$79</p>
+            <p style="margin:0;font-size:17px;font-weight:600">+$79</p>
           </div>
-          <label class="mt-4 flex items-center gap-3 cursor-pointer">
-            <input id="warranty" type="checkbox" class="h-5 w-5 rounded border-apple-line text-apple-blue" onchange="sync()" />
-            <span class="text-sm">Add 2-year protection</span>
+          <button type="button" id="warrBtn" onclick="toggleWarr()" class="link" style="margin-top:12px;font-size:16px">Add protection</button>
+        </div>
+      </div>
+      <div class="cta-wrap" style="background:linear-gradient(to top, #f5f5f7 70%, rgba(245,245,247,0))">
+        <button class="btn" onclick="show('details')">Continue</button>
+        <p class="legal">Price and dates show again on the confirm sheet before anything is booked.</p>
+      </div>
+    </section>
+
+    <!-- E. DETAILS — iOS grouped form -->
+    <section id="details" class="screen" style="background:var(--sheet)">
+      <div class="status" style="color:#000"><span>9:41</span><span>5G ●●●</span></div>
+      <div class="bar">
+        <button class="link" onclick="show('included')">‹ Back</button>
+        <span style="font-size:13px;color:var(--mute)">Account</span>
+        <span style="width:48px"></span>
+      </div>
+      <div class="scroll" style="padding:8px 16px 16px">
+        <h1 style="font-size:28px;letter-spacing:-.03em;font-weight:700;margin:4px 4px 16px">Your details</h1>
+        <div class="group">
+          <label><span style="font-size:12px;color:var(--mute)">Name</span><input class="field" id="f-name" autocomplete="name" required placeholder="Jane Olson" /></label>
+          <label><span style="font-size:12px;color:var(--mute)">Mobile</span><input class="field" id="f-phone" type="tel" autocomplete="tel" required placeholder="(612) 555-0142" /></label>
+          <label><span style="font-size:12px;color:var(--mute)">Address</span><input class="field" id="f-addr" autocomplete="street-address" required placeholder="Minneapolis address" /></label>
+          <label>
+            <span style="font-size:12px;color:var(--mute)">Machine</span>
+            <select class="field" id="f-machine">
+              <option>Snowblower</option>
+              <option>Walk-behind mower</option>
+              <option>Riding mower</option>
+              <option>Snowblower + mower</option>
+            </select>
           </label>
         </div>
+        <p style="margin:12px 4px 0;font-size:12px;color:var(--mute)">Used only to schedule pickup or the visit. We text the window. No spam list.</p>
       </div>
-      <div class="sticky-cta px-6 pt-3 bg-[#f5f5f7]/90 backdrop-blur">
-        <div class="flex justify-center gap-1.5 mb-4"><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot on"></i><i class="dot"></i></div>
-        <button id="incCta" onclick="go('details')" class="w-full h-14 rounded-full bg-apple-blue text-white text-[17px] font-medium active:scale-95 transition-transform">Continue</button>
-        <p class="text-center text-xs text-apple-mute mt-3">No card charged until you confirm on the last screen.</p>
+      <div class="cta-wrap" style="background:linear-gradient(to top, #f5f5f7 70%, rgba(245,245,247,0))">
+        <button class="btn" onclick="openSheet()">Continue</button>
       </div>
     </section>
 
-    <section id="s-details" class="screen">
-      <header class="px-6 pt-6 flex items-center justify-between">
-        <button onclick="go('included')" class="text-apple-blue text-[17px]">‹ Back</button>
-        <p class="text-sm text-apple-mute">Your details</p>
-        <span class="w-10"></span>
-      </header>
-      <form class="flex-1 px-6 pt-6 pb-4 space-y-4" onsubmit="event.preventDefault(); go('confirm')">
-        <h2 class="text-[28px] font-semibold tracking-tight">Four fields. Then you’re in.</h2>
-        <label class="block">
-          <span class="text-xs text-apple-mute">Name</span>
-          <input id="f-name" required autocomplete="name" class="mt-1 w-full h-12 rounded-xl bg-white px-4 text-[16px] outline-none ring-1 ring-apple-line focus:ring-2 focus:ring-apple-blue" />
-        </label>
-        <label class="block">
-          <span class="text-xs text-apple-mute">Mobile phone</span>
-          <input id="f-phone" required type="tel" autocomplete="tel" class="mt-1 w-full h-12 rounded-xl bg-white px-4 text-[16px] outline-none ring-1 ring-apple-line focus:ring-2 focus:ring-apple-blue" />
-        </label>
-        <label class="block">
-          <span class="text-xs text-apple-mute">Pickup address</span>
-          <input id="f-addr" required autocomplete="street-address" class="mt-1 w-full h-12 rounded-xl bg-white px-4 text-[16px] outline-none ring-1 ring-apple-line focus:ring-2 focus:ring-apple-blue" />
-        </label>
-        <label class="block">
-          <span class="text-xs text-apple-mute">Machine</span>
-          <select id="f-machine" class="mt-1 w-full h-12 rounded-xl bg-white px-4 text-[16px] outline-none ring-1 ring-apple-line focus:ring-2 focus:ring-apple-blue">
-            <option>Snowblower</option>
-            <option>Walk-behind mower</option>
-            <option>Riding mower</option>
-            <option>Snowblower + mower</option>
-          </select>
-        </label>
-        <button type="submit" class="w-full h-14 rounded-full bg-apple-blue text-white text-[17px] font-medium active:scale-95 transition-transform">Review order</button>
-      </form>
+    <!-- F. CONFIRM uses overlay on details + standalone done -->
+    <section id="done" class="screen" style="background:#fff">
+      <div class="status" style="color:#000"><span>9:41</span><span>5G ●●●</span></div>
+      <div class="scroll" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 28px">
+        <div style="width:64px;height:64px;border-radius:99px;background:#30d158;color:#fff;display:grid;place-items:center;font-size:32px;margin-bottom:18px">✓</div>
+        <h1 style="font-size:32px;letter-spacing:-.03em;font-weight:700;margin:0 0 10px">You’re in.</h1>
+        <p id="doneCopy" style="margin:0;font-size:17px;color:var(--mute);line-height:1.4">We’ll text your pickup window.</p>
+      </div>
+      <div class="cta-wrap">
+        <button class="btn" onclick="location.href='index.html'">Done</button>
+        <p class="legal">Or call 612-725-0672</p>
+      </div>
     </section>
 
-    <section id="s-confirm" class="screen">
-      <header class="px-6 pt-6 flex items-center justify-between">
-        <button onclick="go('details')" class="text-apple-blue text-[17px]">‹ Back</button>
-        <p class="text-sm text-apple-mute">Confirm</p>
-        <span class="w-10"></span>
-      </header>
-      <div class="flex-1 px-6 pt-6 pb-4">
-        <div class="sheet-enter rounded-3xl bg-white shadow-sm overflow-hidden">
-          <div class="px-5 py-4 border-b border-apple-line/70">
-            <p class="text-xs text-apple-mute">Twin City Small Engine</p>
-            <h3 id="c-plan" class="text-[20px] font-semibold">Pickup &amp; Shop</h3>
-          </div>
-          <div class="px-5 py-4 space-y-3 text-[15px]">
-            <div class="flex justify-between"><span class="text-apple-mute">Due today</span><span id="c-today" class="font-medium">$0.00</span></div>
-            <div class="flex justify-between"><span class="text-apple-mute">After inspection / first visit</span><span id="c-later" class="font-medium">$69.95</span></div>
-            <div class="flex justify-between"><span class="text-apple-mute">Protection</span><span id="c-warr">Not added</span></div>
-            <div class="flex justify-between"><span class="text-apple-mute">Machine</span><span id="c-machine">Snowblower</span></div>
-          </div>
-          <div class="px-5 py-4 bg-apple-sheet text-[13px] text-apple-mute leading-relaxed">
-            Subscriptions and scheduled care renew unless you cancel at least 24 hours before the next visit. Cancel by texting or calling 612-725-0672. Prototype — no card will be charged.
-          </div>
+    <div class="sheet-bg" id="sheetBg" onclick="if(event.target===this) this.classList.remove('on')">
+      <div class="sheet" onclick="event.stopPropagation()">
+        <div class="grab"></div>
+        <p style="margin:0;text-align:center;font-size:13px;color:var(--mute)">Twin City Small Engine</p>
+        <h2 id="s-name" style="margin:4px 0 14px;text-align:center;font-size:22px;font-weight:700;letter-spacing:-.02em">Pickup &amp; Shop</h2>
+        <div class="row"><span style="color:var(--mute)">Due today</span><span id="s-today">$0.00</span></div>
+        <div class="row"><span style="color:var(--mute)">After inspection / first visit</span><span id="s-later">$69.95</span></div>
+        <div class="row"><span style="color:var(--mute)">Protection</span><span id="s-warr">Not added</span></div>
+        <div class="row"><span style="color:var(--mute)">Machine</span><span id="s-machine">Snowblower</span></div>
+        <p class="legal" style="text-align:left;margin:14px 0 16px">Year-Round Care renews unless you cancel 24 hours before the next season. Cancel by text or 612-725-0672. Prototype — no card is charged.</p>
+        <button class="btn" onclick="finish()">Confirm</button>
+        <div style="text-align:center;margin-top:10px">
+          <button class="link" onclick="document.getElementById('sheetBg').classList.remove('on')">Cancel</button>
         </div>
-        <p id="c-who" class="text-sm text-apple-mute mt-4 px-1"></p>
       </div>
-      <div class="sticky-cta px-6 pt-3 bg-[#f5f5f7]/90 backdrop-blur">
-        <div class="flex justify-center gap-1.5 mb-4"><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot on"></i></div>
-        <button onclick="finish()" class="w-full h-14 rounded-full bg-apple-blue text-white text-[17px] font-medium active:scale-95 transition-transform">Confirm &amp; text me</button>
-        <p class="text-center text-xs text-apple-mute mt-3">We’ll text a pickup window. No surprise charges.</p>
-      </div>
-    </section>
-
-    <section id="s-done" class="screen">
-      <div class="flex-1 flex flex-col items-center justify-center px-8 text-center">
-        <div class="h-16 w-16 rounded-full bg-emerald-500 text-white text-3xl flex items-center justify-center mb-6">✓</div>
-        <h1 class="text-[32px] font-semibold tracking-tight mb-3">You’re on the list.</h1>
-        <p id="doneCopy" class="text-apple-mute text-[17px] leading-relaxed">We’ll text your pickup window. That’s the whole form.</p>
-      </div>
-      <div class="sticky-cta px-6">
-        <a href="index.html" class="block w-full h-14 rounded-full bg-apple-blue text-white text-[17px] font-medium text-center leading-[56px]">Back to the site</a>
-        <p class="text-center text-xs text-apple-mute mt-3">Or call 612-725-0672</p>
-      </div>
-    </section>
+    </div>
   </div>
 
   <script>
     const PLANS = {
       pickup: {
         name: "Pickup & Shop",
-        priceLabel: "$69.95 diagnostic",
-        today: 0,
-        later: 69.95,
-        laterLabel: "$69.95 after inspection",
-        cta: "Continue with Pickup",
+        sub: "$69.95 diagnostic · repair quoted after inspection",
         accept: "Accept Pickup",
-        items: [
-          "We pick it up from the driveway",
-          "Full diagnostic and teardown",
-          "Written estimate before repair",
-          "Return delivery when it’s ready"
+        today: "$0.00",
+        later: "$69.95",
+        cards: [
+          ["#007aff", "Pickup", "We load it. You stay home."],
+          ["#bf5af2", "Diagnose", "Full teardown and a written quote."],
+          ["#30d158", "Return", "Delivered running, ready for the storm."]
         ]
       },
       home: {
         name: "At-Home Tune-Up",
-        priceLabel: "$139 per visit",
-        today: 139,
-        later: 0,
-        laterLabel: "Nothing later unless you add care",
-        cta: "Continue with Tune-Up",
-        accept: "Book Tune-Up",
-        items: [
-          "Tech comes to your driveway",
-          "Multi-point inspection and tune-up",
-          "Scheduled spring or fall window",
-          "No loading it in the truck yourself"
+        sub: "$139 per visit · driveway service",
+        accept: "Accept Tune-Up",
+        today: "$139.00",
+        later: "$0.00",
+        cards: [
+          ["#30d158", "Driveway", "The tech comes to you."],
+          ["#007aff", "Tune-up", "Blades, oil, safety, start."],
+          ["#ff9f0a", "Season", "Book spring or fall before it hits."]
         ]
       },
       year: {
         name: "Year-Round Care",
-        priceLabel: "$399 per year",
-        today: 399,
-        later: 0,
-        laterLabel: "Renews next year unless you cancel",
-        cta: "Start Year-Round Care",
-        accept: "Start Care",
-        items: [
-          "Spring service for the mower",
-          "Fall winterize for the snowblower",
-          "Guaranteed to start after our visit",
-          "Priority scheduling over one-off jobs"
+        sub: "$399 per year · snowblower + mower",
+        accept: "Start Year-Round Care",
+        today: "$399.00",
+        later: "Renews next year",
+        cards: [
+          ["#007aff", "Fall", "Snowblower winterized the right way."],
+          ["#30d158", "Spring", "Mower prepped when the grass comes back."],
+          ["#ff9f0a", "Guarantee", "It starts. That is the product."],
+          ["#bf5af2", "Priority", "Members go ahead of one-off jobs."]
         ]
       }
     };
 
     const state = { plan: "pickup", monthly: false, warranty: false };
 
-    function selectPlan(id) {
+    function show(id) {
+      document.querySelectorAll(".screen").forEach((s) => s.classList.toggle("on", s.id === id));
+      document.getElementById("sheetBg").classList.remove("on");
+      if (id === "included") renderIncluded();
+    }
+
+    function pick(id) {
       state.plan = id;
-      if (id === "year") state.monthly = state.monthly;
-      else state.monthly = false;
-      document.querySelectorAll(".plan-card").forEach((el) => {
-        el.classList.toggle("card-selected", el.dataset.plan === id);
+      if (id !== "year") state.monthly = false;
+      ["pickup", "home", "year"].forEach((k) => {
+        document.getElementById("card-" + k).classList.toggle("sel", k === id);
+        document.getElementById("r-" + k).classList.toggle("on", k === id);
       });
-      document.getElementById("year-toggle").classList.toggle("hidden", id !== "year");
-      sync();
+      document.getElementById("yearToggle").style.display = id === "year" ? "block" : "none";
+      document.getElementById("plansCta").textContent = PLANS[id].accept;
     }
 
-    function toggleMonthly() {
+    function toggleMonth() {
       state.monthly = !state.monthly;
-      const p = PLANS.year;
+      const y = PLANS.year;
       if (state.monthly) {
-        p.priceLabel = "$39 per month";
-        p.today = 39;
-        p.laterLabel = "Then $39 each month. Cancel any time.";
+        y.sub = "$39 per month · snowblower + mower";
+        y.today = "$39.00";
+        y.later = "Then $39 each month";
+        document.getElementById("yearPrice").textContent = "$39";
+        document.getElementById("yearCadence").textContent = "per month";
+        document.getElementById("monthBtn").textContent = "Switch to $399 / yr";
       } else {
-        p.priceLabel = "$399 per year";
-        p.today = 399;
-        p.laterLabel = "Renews next year unless you cancel";
+        y.sub = "$399 per year · snowblower + mower";
+        y.today = "$399.00";
+        y.later = "Renews next year";
+        document.getElementById("yearPrice").textContent = "$399";
+        document.getElementById("yearCadence").textContent = "per year";
+        document.getElementById("monthBtn").textContent = "$39 / mo";
       }
-      document.getElementById("monthlyBtn").textContent = state.monthly ? "Switch to $399 / year" : "$39 / month";
-      document.querySelector('[data-plan="year"] .text-\\[22px\\]').textContent = state.monthly ? "$39" : "$399";
-      document.querySelector('[data-plan="year"] .text-xs').textContent = state.monthly ? "per month" : "per year";
-      sync();
     }
 
-    function money(n) {
-      return n.toLocaleString("en-US", { style: "currency", currency: "USD" });
+    function toggleWarr() {
+      state.warranty = !state.warranty;
+      document.getElementById("warrBtn").textContent = state.warranty ? "Added ✓  Remove" : "Add protection";
     }
 
-    function sync() {
-      state.warranty = document.getElementById("warranty")?.checked || false;
+    function renderIncluded() {
       const p = PLANS[state.plan];
-      const plansCta = document.getElementById("plansCta");
-      if (plansCta) plansCta.textContent = p.cta;
-      const incTitle = document.getElementById("incTitle");
-      const incPrice = document.getElementById("incPrice");
-      const incList = document.getElementById("incList");
-      if (incTitle) incTitle.textContent = p.name;
-      if (incPrice) incPrice.textContent = p.priceLabel;
-      if (incList) incList.innerHTML = p.items.map((t) => `<li class="flex gap-3"><span class="text-emerald-500">✓</span><span>${t}</span></li>`).join("");
-      const today = p.today + (state.warranty ? 79 : 0);
-      const cPlan = document.getElementById("c-plan");
-      const cToday = document.getElementById("c-today");
-      const cLater = document.getElementById("c-later");
-      const cWarr = document.getElementById("c-warr");
-      if (cPlan) cPlan.textContent = p.name;
-      if (cToday) cToday.textContent = money(today);
-      if (cLater) cLater.textContent = p.later ? money(p.later) : p.laterLabel;
-      if (cWarr) cWarr.textContent = state.warranty ? "2-year · $79" : "Not added";
+      document.getElementById("incTitle").textContent = p.name;
+      document.getElementById("incSub").textContent = p.sub;
+      document.getElementById("incPills").innerHTML = p.cards.map(([c, t, d]) =>
+        `<div class="inc-card"><div class="icon" style="background:${c};margin-bottom:14px"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="8"/></svg></div><p style="margin:0;font-size:18px;font-weight:600">${t}</p><p style="margin:6px 0 0;font-size:14px;color:#6e6e73">${d}</p></div>`
+      ).join("");
     }
 
-    function go(id) {
-      sync();
-      if (id === "confirm") {
-        const machine = document.getElementById("f-machine")?.value || "Snowblower";
-        const name = document.getElementById("f-name")?.value || "";
-        const addr = document.getElementById("f-addr")?.value || "";
-        const cm = document.getElementById("c-machine");
-        const cw = document.getElementById("c-who");
-        if (cm) cm.textContent = machine;
-        if (cw) cw.textContent = [name, addr].filter(Boolean).join(" · ");
+    function openSheet() {
+      const name = document.getElementById("f-name").value.trim();
+      const phone = document.getElementById("f-phone").value.trim();
+      const addr = document.getElementById("f-addr").value.trim();
+      if (!name || !phone || !addr) {
+        show('details');
+        alert("Name, mobile, and address — then the confirm sheet.");
+        return;
       }
-      document.querySelectorAll(".screen").forEach((s) => s.classList.remove("active"));
-      document.getElementById("s-" + id).classList.add("active");
-      window.scrollTo(0, 0);
+      const p = PLANS[state.plan];
+      document.getElementById("s-name").textContent = p.name;
+      document.getElementById("s-today").textContent = p.today;
+      document.getElementById("s-later").textContent = p.later;
+      document.getElementById("s-warr").textContent = state.warranty ? "2-year · +$79" : "Not added";
+      document.getElementById("s-machine").textContent = document.getElementById("f-machine").value;
+      document.getElementById("sheetBg").classList.add("on");
     }
 
     function finish() {
-      const name = document.getElementById("f-name").value || "You";
-      const machine = document.getElementById("f-machine").value;
+      const p = PLANS[state.plan];
+      document.getElementById("sheetBg").classList.remove("on");
       document.getElementById("doneCopy").textContent =
-        "Hi " + name.split(" ")[0] + " — " + PLANS[state.plan].name + " for your " + machine.toLowerCase() + ". We’ll text the window to the number you gave.";
-      go("done");
+        p.name + " is booked. We’ll text the window to " + document.getElementById("f-phone").value + ".";
+      show("done");
     }
 
-    selectPlan("pickup");
+    pick("pickup");
   </script>
 </body>
 </html>
