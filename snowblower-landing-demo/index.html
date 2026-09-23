@@ -49,9 +49,8 @@
         padding-right: 16px;
         box-sizing: border-box;
       }
-      /* 22px logos plus a gap do not fit between the badge and the 660px line.
-         Lift the badge by 28px on phone only; the spacer keeps pricing put. */
-      #hero-badge { margin-top: -1px; }
+      /* Phone trust row is side by side and shorter than the old stack.
+         Logos stay pinned; the spacer keeps pricing put. */
       #hero-logo-spacer { height: 87px; }
     }
   </style>
@@ -108,8 +107,14 @@
         <span>Secure booking</span>
       </div>
       </div>
-      <div id="hero-badge" class="flex flex-col items-center justify-center text-center mt-[27px] md:mt-2 w-full md:col-start-1 md:row-start-4">
-        <img src="snowblower-review.png" alt="5 Star Rated from 413 Reviews" class="w-[120px] md:w-[140px] max-w-[140px] object-contain mix-blend-multiply" onerror="this.onerror=null;this.src='snowblower-review.svg'" />
+      <div id="hero-badge" class="flex flex-row items-center justify-center gap-6 mt-4 text-center w-full md:flex-col md:mt-2 md:col-start-1 md:row-start-4">
+        <div class="h-[46px] w-[168px] overflow-hidden shrink-0 md:hidden">
+          <img src="snowblower-review.png" alt="5 Star Rating from 413 Reviews from Twin City Small Engine" class="w-[168px] max-w-none mix-blend-multiply" onerror="this.onerror=null;this.src='snowblower-review.svg'" />
+        </div>
+        <div class="h-[40px] w-[140px] overflow-hidden shrink-0 md:hidden" aria-hidden="true">
+          <img src="snowblower-review.png" alt="" class="w-[182px] max-w-none -mt-[58px] mix-blend-multiply" />
+        </div>
+        <img src="snowblower-review.png" alt="5 Star Rating from 413 Reviews from Twin City Small Engine" class="hidden md:block w-[140px] max-w-[140px] object-contain mix-blend-multiply" onerror="this.onerror=null;this.src='snowblower-review.svg'" />
       </div>
       <div id="hero-logos" class="flex justify-center items-center gap-2 md:gap-6 lg:justify-between lg:gap-10 mt-[11px] pb-6 w-full h-12 md:h-8 lg:h-[36px] lg:mt-8 md:col-start-1 md:row-start-5 lg:col-span-2">
         <img src="/toro.png" alt="Toro" class="h-full max-h-[22px] md:max-h-[20px] lg:h-[36px] lg:max-h-[36px] w-auto object-contain grayscale opacity-60 mix-blend-multiply" />
