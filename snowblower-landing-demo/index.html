@@ -25,6 +25,32 @@
     @media (prefers-reduced-motion: reduce) {
       .hero-cta-bump { animation: none; }
     }
+    /* One phone hero for widths near an iPhone (375–430). A fixed copy
+       column that fits a 375px screen cannot reflow between those widths.
+       Logo bottoms are pinned ~5px above the 660px fold line. */
+    @media (max-width: 767px) {
+      body { position: relative; }
+      #hero h1,
+      #hero .hero-phone-copy {
+        width: 343px;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        align-self: center;
+      }
+      #hero-logos {
+        position: absolute;
+        top: 632px;
+        left: 0;
+        right: 0;
+        width: auto;
+        margin-top: 0;
+        padding-left: 16px;
+        padding-right: 16px;
+        box-sizing: border-box;
+      }
+      #hero-logo-spacer { height: 59px; }
+    }
   </style>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -63,7 +89,7 @@
   <section id="hero" class="block w-full pt-3 pb-3 md:pt-10 md:pb-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-16 flex flex-col md:grid md:grid-cols-2 md:gap-x-16 md:items-center">
       <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight text-center mt-0 mb-1 md:mt-10 md:mb-8 md:col-start-1 md:row-start-1">Professional Snowblower Repair <span class="text-blue-600">Picked Up &amp; Delivered.</span></h1>
-      <p class="text-sm md:text-base text-gray-600 leading-snug text-center mb-3 md:mb-10 max-w-md mx-auto md:col-start-1 md:row-start-2">Serving the Minneapolis metro. <strong>We haul it, fix it, and return it ready</strong> for the next blizzard so you never touch a ramp.</p>
+      <p class="hero-phone-copy text-sm md:text-base text-gray-600 leading-snug text-center mb-3 md:mb-10 max-w-md mx-auto md:col-start-1 md:row-start-2">Serving the Minneapolis metro. <strong>We haul it, fix it, and return it ready</strong> for the next blizzard so you never touch a ramp.</p>
       <div class="w-full h-40 md:h-auto overflow-hidden rounded-xl mt-0 mb-2 shadow-2xl border border-gray-200/60 shrink-0 md:col-start-2 md:row-start-1 md:row-span-5 lg:row-span-4">
         <img src="hero-truck.webp" alt="Snowblower being loaded up a ramp into a Twin City Small Engine service van" class="w-full h-full object-cover object-right">
       </div>
@@ -82,12 +108,13 @@
       <div class="flex flex-col items-center justify-center text-center mt-[27px] md:mt-2 w-full md:col-start-1 md:row-start-4">
         <img src="snowblower-review.png" alt="5 Star Rated from 413 Reviews" class="w-[120px] md:w-[140px] max-w-[140px] object-contain mix-blend-multiply" onerror="this.onerror=null;this.src='snowblower-review.svg'" />
       </div>
-      <div class="flex justify-center items-center gap-2 md:gap-6 lg:justify-between lg:gap-10 mt-[11px] pb-6 w-full h-12 md:h-8 lg:h-[36px] lg:mt-8 md:col-start-1 md:row-start-5 lg:col-span-2">
+      <div id="hero-logos" class="flex justify-center items-center gap-2 md:gap-6 lg:justify-between lg:gap-10 mt-[11px] pb-6 w-full h-12 md:h-8 lg:h-[36px] lg:mt-8 md:col-start-1 md:row-start-5 lg:col-span-2">
         <img src="/toro.png" alt="Toro" class="h-full max-h-[22px] md:max-h-[20px] lg:h-[36px] lg:max-h-[36px] w-auto object-contain grayscale opacity-60 mix-blend-multiply" />
         <img src="/ariens.svg?v=2" alt="Ariens" class="h-full max-h-[22px] md:max-h-[20px] lg:h-[36px] lg:max-h-[36px] w-auto object-contain grayscale opacity-60 mix-blend-multiply" />
         <img src="/craftsman.png" alt="Craftsman" class="h-full max-h-[22px] md:max-h-[20px] lg:h-[36px] lg:max-h-[36px] w-auto object-contain grayscale opacity-60 mix-blend-multiply" />
         <img src="/troy-bilt.png" alt="Troy-Bilt" class="h-full max-h-[22px] md:max-h-[20px] lg:h-[36px] lg:max-h-[36px] w-auto object-contain grayscale opacity-60 mix-blend-multiply" />
       </div>
+      <div id="hero-logo-spacer" class="md:hidden" aria-hidden="true"></div>
     </div>
   </section>
 
