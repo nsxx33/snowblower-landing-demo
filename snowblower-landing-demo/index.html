@@ -132,9 +132,9 @@
         <h2 id="compare-options" class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight text-center mb-1">Compare Your Options</h2>
         <p class="text-lg text-gray-500 max-w-2xl mx-auto mb-0 md:mb-4">Transparent pricing. No hidden fees. We bring the shop to you, or haul it back to ours.</p>
       </div>
-      <div id="service-tabs" class="flex bg-gray-200 p-1.5 rounded-xl w-full mb-4 md:hidden" role="tablist" aria-label="Service type">
-        <button type="button" role="tab" id="tab-shop" aria-controls="panel-shop" aria-selected="true" data-service-tab="shop" class="service-tab w-1/2 py-2.5 text-base text-center bg-white shadow-sm text-blue-700 font-bold rounded-lg transition-all duration-200">Shop Repair</button>
-        <button type="button" role="tab" id="tab-home" aria-controls="panel-home" aria-selected="false" data-service-tab="home" class="service-tab w-1/2 py-2.5 rounded-lg text-base text-center text-gray-500 hover:text-gray-700 font-medium transition-colors">At-Home Tune-Up</button>
+      <div id="service-tabs" class="flex w-full bg-gray-200 p-1.5 rounded-xl mb-6" role="tablist" aria-label="Service type">
+        <button type="button" role="tab" id="tab-shop" aria-controls="panel-shop" aria-selected="true" data-service-tab="shop" class="w-1/2 py-2.5 bg-white shadow-sm text-blue-700 font-bold rounded-lg">Shop Repair</button>
+        <button type="button" role="tab" id="tab-home" aria-controls="panel-home" aria-selected="false" data-service-tab="home" class="w-1/2 py-2.5 text-gray-500 font-medium bg-transparent">At-Home Tune-Up</button>
       </div>
       <div id="pricing-card-stage" class="grid grid-cols-1 max-w-xl mx-auto md:max-w-none md:grid-cols-2 md:gap-6">
         <div id="panel-shop" role="tabpanel" aria-labelledby="tab-shop" data-pricing-card="shop" class="max-md:col-start-1 max-md:row-start-1 w-full bg-white rounded-3xl border border-gray-200 shadow-sm p-4 md:p-8 flex flex-col ring-2 ring-blue-600 relative overflow-hidden">
@@ -330,16 +330,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     serviceTabs.forEach(tab=>{
       const on=tab.getAttribute("data-service-tab")===key;
       tab.setAttribute("aria-selected",on?"true":"false");
-      tab.classList.toggle("bg-white",on);
-      tab.classList.toggle("shadow-sm",on);
-      tab.classList.toggle("text-blue-700",on);
-      tab.classList.toggle("font-bold",on);
-      tab.classList.toggle("transition-all",on);
-      tab.classList.toggle("duration-200",on);
-      tab.classList.toggle("text-gray-500",!on);
-      tab.classList.toggle("hover:text-gray-700",!on);
-      tab.classList.toggle("font-medium",!on);
-      tab.classList.toggle("transition-colors",!on);
+      tab.className=on?"w-1/2 py-2.5 bg-white shadow-sm text-blue-700 font-bold rounded-lg":"w-1/2 py-2.5 text-gray-500 font-medium bg-transparent";
     });
     pricingCards.forEach(card=>{
       const on=desktop||card.getAttribute("data-pricing-card")===key;
